@@ -1,0 +1,10 @@
+.socfpga_arria10_socdk_sdmmc.dtb.pre.o: \
+ arch/arm/dts/.socfpga_arria10_socdk_sdmmc.dtb.pre.tmp \
+ include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/socfpga_arria10_socdk.dtsi \
+ arch/arm/dts/socfpga_arria10.dtsi \
+ arch/arm/dts/include/dt-bindings/interrupt-controller/arm-gic.h \
+ arch/arm/dts/include/dt-bindings/interrupt-controller/irq.h \
+ arch/arm/dts/include/dt-bindings/reset/altr,rst-mgr-a10.h \
+ arch/arm/dts/socfpga_arria10_socdk_sdmmc_handoff.dtsi \
+ arch/arm/dts/socfpga_arria10_handoff_u-boot.dtsi

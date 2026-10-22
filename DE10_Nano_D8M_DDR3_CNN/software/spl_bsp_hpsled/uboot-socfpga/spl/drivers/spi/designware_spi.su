@@ -1,0 +1,8 @@
+drivers/spi/designware_spi.c:503:12:dw_spi_set_mode	8	static
+drivers/spi/designware_spi.c:476:12:dw_spi_set_speed	16	static
+drivers/spi/designware_spi.c:153:12:dw_spi_ofdata_to_platdata	16	static
+drivers/spi/designware_spi.c:518:12:dw_spi_remove	8	static
+drivers/spi/designware_spi.c:204:12:dw_spi_get_clk	8	static
+drivers/spi/designware_spi.c:261:12:dw_spi_probe	24	static
+drivers/spi/designware_spi.c:374:13:external_cs_manage	0	static
+drivers/spi/designware_spi.c:386:12:dw_spi_xfer	32	static

@@ -1,0 +1,9 @@
+drivers/sysreset/sysreset-uclass.c:139:12:sysreset_post_bind	0	static
+drivers/sysreset/sysreset-uclass.c:19:5:sysreset_request	0	static
+drivers/sysreset/sysreset-uclass.c:29:5:sysreset_get_status	0	static
+drivers/sysreset/sysreset-uclass.c:39:5:sysreset_get_last	0	static
+drivers/sysreset/sysreset-uclass.c:49:5:sysreset_walk	24	static
+drivers/sysreset/sysreset-uclass.c:68:5:sysreset_get_last_walk	16	static
+drivers/sysreset/sysreset-uclass.c:88:6:sysreset_walk_halt	8	static
+drivers/sysreset/sysreset-uclass.c:106:6:reset_cpu	8	static
+drivers/sysreset/sysreset-uclass.c:112:5:do_reset	8	static

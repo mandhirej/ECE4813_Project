@@ -1,0 +1,1 @@
+arch/arm/lib/stack.c:17:5:arch_reserve_stacks	0	static

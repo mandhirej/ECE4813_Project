@@ -1,0 +1,8 @@
+drivers/gpio/dwapb_gpio.c:84:12:dwapb_gpio_get_function	8	static
+drivers/gpio/dwapb_gpio.c:72:12:dwapb_gpio_set_value	16	static
+drivers/gpio/dwapb_gpio.c:65:12:dwapb_gpio_get_value	8	static
+drivers/gpio/dwapb_gpio.c:50:12:dwapb_gpio_direction_output	24	static
+drivers/gpio/dwapb_gpio.c:42:12:dwapb_gpio_direction_input	16	static
+drivers/gpio/dwapb_gpio.c:199:12:gpio_dwapb_remove	16	static
+drivers/gpio/dwapb_gpio.c:132:12:gpio_dwapb_probe	16	static
+drivers/gpio/dwapb_gpio.c:148:12:gpio_dwapb_bind	48	static

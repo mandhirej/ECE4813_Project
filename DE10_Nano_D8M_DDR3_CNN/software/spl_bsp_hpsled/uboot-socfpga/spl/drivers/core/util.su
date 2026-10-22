@@ -1,0 +1,2 @@
+drivers/core/util.c:23:5:list_count_items	0	static
+drivers/core/util.c:35:6:dm_ofnode_pre_reloc	0	static

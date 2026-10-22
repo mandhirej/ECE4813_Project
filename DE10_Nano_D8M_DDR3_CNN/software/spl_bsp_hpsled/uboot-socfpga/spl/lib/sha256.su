@@ -1,0 +1,6 @@
+lib/sha256.c:58:13:sha256_process	128	static
+lib/sha256.c:189:6:sha256_update.part.0	32	static
+lib/sha256.c:43:6:sha256_starts	0	static
+lib/sha256.c:189:6:sha256_update	0	static
+lib/sha256.c:230:6:sha256_finish	24	static
+lib/sha256.c:263:6:sha256_csum_wd	128	static

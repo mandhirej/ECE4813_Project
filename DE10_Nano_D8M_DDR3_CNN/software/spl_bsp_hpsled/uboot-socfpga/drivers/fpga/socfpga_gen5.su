@@ -1,0 +1,2 @@
+drivers/fpga/socfpga_gen5.c:23:13:fpgamgr_set_cd_ratio	0	static
+drivers/fpga/socfpga_gen5.c:206:5:socfpga_load	24	static

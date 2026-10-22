@@ -1,0 +1,2 @@
+lib/efi_loader/efi_setup.c:21:13:allow_unaligned	0	static
+lib/efi_loader/efi_setup.c:90:14:efi_init_obj_list	48	static

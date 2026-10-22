@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="287" />
+   <irq preferredWidth="34" />
+   <name preferredWidth="244" />
+   <description preferredWidth="314" />
+   <inputclock preferredWidth="180" />
+   <export preferredWidth="261" />
+  </columns>
+ </systemtable>
+ <library
+   expandedCategories="Library/Basic Functions/Bridges and Adaptors/Reset,Library,Library/Basic Functions,Project,Library/Basic Functions/Bridges and Adaptors" />
+ <window width="1920" height="1020" x="0" y="0" />
+ <hdlexample language="VERILOG" />
+</preferences>

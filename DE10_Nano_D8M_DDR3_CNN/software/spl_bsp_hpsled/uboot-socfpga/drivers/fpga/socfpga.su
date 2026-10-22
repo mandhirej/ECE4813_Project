@@ -1,0 +1,2 @@
+drivers/fpga/socfpga.c:20:5:fpgamgr_dclkcnt_set	0	static
+drivers/fpga/socfpga.c:44:6:fpgamgr_program_write	28	static

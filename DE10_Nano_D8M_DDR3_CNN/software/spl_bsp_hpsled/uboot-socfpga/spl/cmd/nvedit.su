@@ -1,0 +1,12 @@
+cmd/nvedit.c:224:12:_do_env_set.constprop	64	static
+cmd/nvedit.c:80:5:env_get_id	0	static
+cmd/nvedit.c:302:5:env_set	24	static
+cmd/nvedit.c:323:5:env_set_ulong	8	static
+cmd/nvedit.c:338:5:env_set_hex	32	static
+cmd/nvedit.c:776:5:env_match	24	static
+cmd/nvedit.c:686:5:env_get_f	32	static
+cmd/nvedit.c:662:7:env_get	56	static
+cmd/nvedit.c:346:7:env_get_hex	24	static
+cmd/nvedit.c:361:5:eth_env_get_enetaddr	8	static
+cmd/nvedit.c:367:5:eth_env_set_enetaddr	40	static
+cmd/nvedit.c:735:7:env_get_ulong	16	static

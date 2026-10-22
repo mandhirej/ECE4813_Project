@@ -1,0 +1,4 @@
+drivers/mmc/socfpga_dw_mmc.c:52:13:socfpga_dwmci_clksel	0	static
+drivers/mmc/socfpga_dw_mmc.c:101:12:socfpga_dwmmc_ofdata_to_platdata	24	static
+drivers/mmc/socfpga_dw_mmc.c:136:12:socfpga_dwmmc_probe	32	static
+drivers/mmc/socfpga_dw_mmc.c:168:12:socfpga_dwmmc_bind	8	static

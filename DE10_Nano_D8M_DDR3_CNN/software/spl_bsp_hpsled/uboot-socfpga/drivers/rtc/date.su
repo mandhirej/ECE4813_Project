@@ -1,0 +1,2 @@
+drivers/rtc/date.c:30:5:rtc_calc_weekday	32	static
+drivers/rtc/date.c:81:15:rtc_mktime	16	static

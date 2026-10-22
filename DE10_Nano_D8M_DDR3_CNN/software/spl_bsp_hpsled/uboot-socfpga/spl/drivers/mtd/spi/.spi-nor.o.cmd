@@ -1,0 +1,1 @@
+cmd_spl/drivers/mtd/spi/spi-nor.o := arm-linux-gnueabihf-ld.bfd   -r -o spl/drivers/mtd/spi/spi-nor.o spl/drivers/mtd/spi/sf_probe.o spl/drivers/mtd/spi/spi-nor-ids.o spl/drivers/mtd/spi/spi-nor-tiny.o 

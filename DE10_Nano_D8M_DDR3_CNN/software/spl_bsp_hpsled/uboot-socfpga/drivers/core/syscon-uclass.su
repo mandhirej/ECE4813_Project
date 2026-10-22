@@ -1,0 +1,8 @@
+drivers/core/syscon-uclass.c:60:12:syscon_probe_by_ofnode	32	static
+drivers/core/syscon-uclass.c:36:12:syscon_pre_probe	16	static
+drivers/core/syscon-uclass.c:26:16:syscon_get_regmap	8	static
+drivers/core/syscon-uclass.c:93:16:syscon_regmap_lookup_by_phandle	24	static
+drivers/core/syscon-uclass.c:129:5:syscon_get_by_driver_data	24	static
+drivers/core/syscon-uclass.c:149:16:syscon_get_regmap_by_driver_data	16	static
+drivers/core/syscon-uclass.c:163:7:syscon_get_first_range	8	static
+drivers/core/syscon-uclass.c:199:16:syscon_node_to_regmap	16	static

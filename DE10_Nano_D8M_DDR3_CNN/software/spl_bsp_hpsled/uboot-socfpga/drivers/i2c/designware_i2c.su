@@ -1,0 +1,12 @@
+drivers/i2c/designware_i2c.c:198:12:i2c_wait_for_bb	16	static
+drivers/i2c/designware_i2c.c:229:12:i2c_xfer_finish	16	static
+drivers/i2c/designware_i2c.c:609:12:designware_i2c_remove	8	static
+drivers/i2c/designware_i2c.c:54:12:dw_i2c_enable	16	static
+drivers/i2c/designware_i2c.c:621:12:designware_i2c_bind	32	static
+drivers/i2c/designware_i2c.c:386:12:__dw_i2c_init.constprop	8	static
+drivers/i2c/designware_i2c.c:568:12:designware_i2c_probe	16	static
+drivers/i2c/designware_i2c.c:213:12:i2c_xfer_init.constprop	24	static
+drivers/i2c/designware_i2c.c:262:12:__dw_i2c_read.constprop	32	static
+drivers/i2c/designware_i2c.c:552:12:designware_i2c_probe_chip	32	static
+drivers/i2c/designware_i2c.c:508:12:designware_i2c_xfer	48	static
+drivers/i2c/designware_i2c.c:533:12:designware_i2c_set_bus_speed	24	static

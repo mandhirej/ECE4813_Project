@@ -1,0 +1,12 @@
+lib/efi_loader/efi_variable.c:582:1:efi_get_variable_runtime	0	static
+lib/efi_loader/efi_variable.c:598:1:efi_get_next_variable_name_runtime	0	static
+lib/efi_loader/efi_variable.c:615:1:efi_set_variable_runtime	0	static
+lib/efi_loader/efi_variable.c:67:21:efi_to_native	32	static
+lib/efi_loader/efi_variable.c:94:20:prefix	16	static
+lib/efi_loader/efi_variable.c:112:20:parse_attr	24	static
+lib/efi_loader/efi_variable.c:166:21:efi_get_variable	40	static
+lib/efi_loader/efi_variable.c:331:21:efi_get_next_variable_name	328	static
+lib/efi_loader/efi_variable.c:422:21:efi_set_variable	48	static
+lib/efi_loader/efi_variable.c:562:35:efi_query_variable_info	0	static
+lib/efi_loader/efi_variable.c:625:6:efi_variables_boot_exit_notify	0	static
+lib/efi_loader/efi_variable.c:639:14:efi_init_variables	0	static

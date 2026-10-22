@@ -1,0 +1,253 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\SweeThianGoh\OneDrive\Desktop\4813\DE10_Nano_D8M_DDR3_CNN\soc_system.qsys --block-symbol-file --output-directory=C:\Users\SweeThianGoh\OneDrive\Desktop\4813\DE10_Nano_D8M_DDR3_CNN\soc_system --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading DE10_Nano_D8M_DDR3_CNN/soc_system.qsys
+Progress: Reading input file
+Progress: Adding TERASIC_CAMERA_0 [TERASIC_CAMERA 1.0]
+Progress: Parameterizing module TERASIC_CAMERA_0
+Progress: Adding alt_vip_cl_cvo_0 [alt_vip_cl_cvo 25.1]
+Progress: Parameterizing module alt_vip_cl_cvo_0
+Progress: Adding alt_vip_cl_vfb_0 [alt_vip_cl_vfb 25.1]
+Progress: Parameterizing module alt_vip_cl_vfb_0
+Progress: Adding bridge_test_in [altera_avalon_pio 25.1]
+Progress: Parameterizing module bridge_test_in
+Progress: Adding bridge_test_out [altera_avalon_pio 25.1]
+Progress: Parameterizing module bridge_test_out
+Progress: Adding clk_50 [clock_source 25.1]
+Progress: Parameterizing module clk_50
+Progress: Adding cnn_status_pio [altera_avalon_pio 25.1]
+Progress: Parameterizing module cnn_status_pio
+Progress: Adding cnn_upload_clock_bridge [altera_clock_bridge 25.1]
+Progress: Parameterizing module cnn_upload_clock_bridge
+Progress: Adding cnn_upload_reset_bridge [altera_reset_bridge 25.1]
+Progress: Parameterizing module cnn_upload_reset_bridge
+Progress: Adding hps_cnn_bridge_0 [hps_cnn_bridge 1.0]
+Progress: Parameterizing module hps_cnn_bridge_0
+Progress: Adding hps_ddr3 [terasic_hps_ddr3 1.0]
+Progress: Reading input file
+Progress: Adding address_span_extender_0 [altera_address_span_extender 25.1]
+Progress: Parameterizing module address_span_extender_0
+Progress: Adding clk_50 [clock_source 25.1]
+Progress: Parameterizing module clk_50
+Progress: Adding clock_bridge_0 [altera_clock_bridge 25.1]
+Progress: Parameterizing module clock_bridge_0
+Progress: Adding hps [altera_hps 25.1]
+Progress: Parameterizing module hps
+Progress: Adding hps_reset_manager_0 [hps_reset_manager 1.0]
+Progress: Parameterizing module hps_reset_manager_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Progress: Parameterizing module hps_ddr3
+Progress: Adding hps_snapshot_0 [hps_snapshot 1.0]
+Progress: Parameterizing module hps_snapshot_0
+Progress: Adding pll_0 [altera_pll 25.1]
+Progress: Parameterizing module pll_0
+Progress: Adding pll_1 [altera_pll 25.1]
+Progress: Parameterizing module pll_1
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: soc_system.alt_vip_cl_vfb_0: Buffer 3 frames, storage required is 18228 kB (0x00000000 to 0x011cd000)
+Info: soc_system.bridge_test_in: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: soc_system.cnn_status_pio: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: soc_system.hps_ddr3.hps: HPS Main PLL counter settings: n = 0  m = 63
+Info: soc_system.hps_ddr3.hps: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: soc_system.hps_ddr3.hps: HPS model no longer supports simulation for HPS FPGA Bridges.
+Info: soc_system.pll_0: The legal reference clock frequency is 5.0 MHz..700.0 MHz
+Info: soc_system.pll_0: Able to implement PLL with user settings
+Info: soc_system.pll_1: The legal reference clock frequency is 50.0 MHz..700.0 MHz
+Info: soc_system.pll_1: Able to implement PLL with user settings
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\SweeThianGoh\OneDrive\Desktop\4813\DE10_Nano_D8M_DDR3_CNN\soc_system.qsys --synthesis=VERILOG --output-directory=C:\Users\SweeThianGoh\OneDrive\Desktop\4813\DE10_Nano_D8M_DDR3_CNN\soc_system\synthesis --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading DE10_Nano_D8M_DDR3_CNN/soc_system.qsys
+Progress: Reading input file
+Progress: Adding TERASIC_CAMERA_0 [TERASIC_CAMERA 1.0]
+Progress: Parameterizing module TERASIC_CAMERA_0
+Progress: Adding alt_vip_cl_cvo_0 [alt_vip_cl_cvo 25.1]
+Progress: Parameterizing module alt_vip_cl_cvo_0
+Progress: Adding alt_vip_cl_vfb_0 [alt_vip_cl_vfb 25.1]
+Progress: Parameterizing module alt_vip_cl_vfb_0
+Progress: Adding bridge_test_in [altera_avalon_pio 25.1]
+Progress: Parameterizing module bridge_test_in
+Progress: Adding bridge_test_out [altera_avalon_pio 25.1]
+Progress: Parameterizing module bridge_test_out
+Progress: Adding clk_50 [clock_source 25.1]
+Progress: Parameterizing module clk_50
+Progress: Adding cnn_status_pio [altera_avalon_pio 25.1]
+Progress: Parameterizing module cnn_status_pio
+Progress: Adding cnn_upload_clock_bridge [altera_clock_bridge 25.1]
+Progress: Parameterizing module cnn_upload_clock_bridge
+Progress: Adding cnn_upload_reset_bridge [altera_reset_bridge 25.1]
+Progress: Parameterizing module cnn_upload_reset_bridge
+Progress: Adding hps_cnn_bridge_0 [hps_cnn_bridge 1.0]
+Progress: Parameterizing module hps_cnn_bridge_0
+Progress: Adding hps_ddr3 [terasic_hps_ddr3 1.0]
+Progress: Parameterizing module hps_ddr3
+Progress: Adding hps_snapshot_0 [hps_snapshot 1.0]
+Progress: Parameterizing module hps_snapshot_0
+Progress: Adding pll_0 [altera_pll 25.1]
+Progress: Parameterizing module pll_0
+Progress: Adding pll_1 [altera_pll 25.1]
+Progress: Parameterizing module pll_1
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: soc_system.alt_vip_cl_vfb_0: Buffer 3 frames, storage required is 18228 kB (0x00000000 to 0x011cd000)
+Info: soc_system.bridge_test_in: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: soc_system.cnn_status_pio: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: soc_system.hps_ddr3.hps: HPS Main PLL counter settings: n = 0  m = 63
+Info: soc_system.hps_ddr3.hps: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: soc_system.hps_ddr3.hps: HPS model no longer supports simulation for HPS FPGA Bridges.
+Info: soc_system.pll_0: The legal reference clock frequency is 5.0 MHz..700.0 MHz
+Info: soc_system.pll_0: Able to implement PLL with user settings
+Info: soc_system.pll_1: The legal reference clock frequency is 50.0 MHz..700.0 MHz
+Info: soc_system.pll_1: Able to implement PLL with user settings
+Info: soc_system: Generating "soc_system" for QUARTUS_SYNTH
+Info: Inserting clock-crossing logic between cmd_demux.src1 and cmd_mux_001.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src2 and cmd_mux_002.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src3 and cmd_mux_003.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src4 and cmd_mux_004.sink0
+Info: Inserting clock-crossing logic between cmd_demux_001.src1 and cmd_mux_001.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src2 and cmd_mux_002.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src3 and cmd_mux_003.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src4 and cmd_mux_004.sink1
+Info: Inserting clock-crossing logic between rsp_demux_001.src0 and rsp_mux.sink1
+Info: Inserting clock-crossing logic between rsp_demux_001.src1 and rsp_mux_001.sink1
+Info: Inserting clock-crossing logic between rsp_demux_002.src0 and rsp_mux.sink2
+Info: Inserting clock-crossing logic between rsp_demux_002.src1 and rsp_mux_001.sink2
+Info: Inserting clock-crossing logic between rsp_demux_003.src0 and rsp_mux.sink3
+Info: Inserting clock-crossing logic between rsp_demux_003.src1 and rsp_mux_001.sink3
+Info: Inserting clock-crossing logic between rsp_demux_004.src0 and rsp_mux.sink4
+Info: Inserting clock-crossing logic between rsp_demux_004.src1 and rsp_mux_001.sink4
+Info: TERASIC_CAMERA_0: "soc_system" instantiated TERASIC_CAMERA "TERASIC_CAMERA_0"
+Info: alt_vip_cl_cvo_0: "soc_system" instantiated alt_vip_cl_cvo "alt_vip_cl_cvo_0"
+Info: alt_vip_cl_vfb_0: "soc_system" instantiated alt_vip_cl_vfb "alt_vip_cl_vfb_0"
+Info: bridge_test_in: Starting RTL generation for module 'soc_system_bridge_test_in'
+Info: bridge_test_in:   Generation command is [exec cmd /c {set LC_ALL=C&& C:/altera_lite/25.1std/quartus/bin64/perl/bin/perl.exe -I C:/altera_lite/25.1std/quartus/bin64/perl/lib -I C:/altera_lite/25.1std/quartus/sopc_builder/bin/europa -I C:/altera_lite/25.1std/quartus/sopc_builder/bin -I C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/common -I C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=soc_system_bridge_test_in --dir=C:/Users/SWEETH~1/AppData/Local/Temp/alt0727_7917314809888711561.dir/0003_bridge_test_in_gen/ --quartus_dir=C:/altera_lite/25.1std/quartus --verilog --config=C:/Users/SWEETH~1/AppData/Local/Temp/alt0727_7917314809888711561.dir/0003_bridge_test_in_gen//soc_system_bridge_test_in_component_configuration.pl --do_build_sim=0}]
+Info: bridge_test_in: Done RTL generation for module 'soc_system_bridge_test_in'
+Info: bridge_test_in: "soc_system" instantiated altera_avalon_pio "bridge_test_in"
+Info: bridge_test_out: Starting RTL generation for module 'soc_system_bridge_test_out'
+Info: bridge_test_out:   Generation command is [exec cmd /c {set LC_ALL=C&& C:/altera_lite/25.1std/quartus/bin64/perl/bin/perl.exe -I C:/altera_lite/25.1std/quartus/bin64/perl/lib -I C:/altera_lite/25.1std/quartus/sopc_builder/bin/europa -I C:/altera_lite/25.1std/quartus/sopc_builder/bin -I C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/common -I C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/altera_lite/25.1std/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=soc_system_bridge_test_out --dir=C:/Users/SWEETH~1/AppData/Local/Temp/alt0727_7917314809888711561.dir/0004_bridge_test_out_gen/ --quartus_dir=C:/altera_lite/25.1std/quartus --verilog --config=C:/Users/SWEETH~1/AppData/Local/Temp/alt0727_7917314809888711561.dir/0004_bridge_test_out_gen//soc_system_bridge_test_out_component_configuration.pl --do_build_sim=0}]
+Info: bridge_test_out: Done RTL generation for module 'soc_system_bridge_test_out'
+Info: bridge_test_out: "soc_system" instantiated altera_avalon_pio "bridge_test_out"
+Info: hps_cnn_bridge_0: "soc_system" instantiated hps_cnn_bridge "hps_cnn_bridge_0"
+Info: Interconnect is inserted between master address_span_extender_0.expanded_master and slave hps.f2h_sdram0_data because the master has address signal 32 bit wide, but the slave is 28 bit wide.
+Info: Interconnect is inserted between master address_span_extender_0.expanded_master and slave hps.f2h_sdram0_data because the master has burstcount signal 9 bit wide, but the slave is 8 bit wide.
+Info: hps_ddr3: "soc_system" instantiated terasic_hps_ddr3 "hps_ddr3"
+Info: hps_snapshot_0: "soc_system" instantiated hps_snapshot "hps_snapshot_0"
+Info: pll_0: "soc_system" instantiated altera_pll "pll_0"
+Info: pll_1: "soc_system" instantiated altera_pll "pll_1"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_003: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_004: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_1: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: rst_controller: "soc_system" instantiated altera_reset_controller "rst_controller"
+Info: video_in: "alt_vip_cl_cvo_0" instantiated alt_vip_video_input_bridge "video_in"
+Info: scheduler: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_scheduler "scheduler"
+Info: sop_align: "alt_vip_cl_cvo_0" instantiated alt_vip_pip_sop_realign "sop_align"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: cvo_core: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_core "cvo_core"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: video_in: "alt_vip_cl_vfb_0" instantiated alt_vip_video_input_bridge "video_in"
+Info: wr_ctrl: "alt_vip_cl_vfb_0" instantiated alt_vip_vfb_wr_ctrl "wr_ctrl"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: pkt_trans_wr: "alt_vip_cl_vfb_0" instantiated alt_vip_packet_transfer "pkt_trans_wr"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: rd_ctrl: "alt_vip_cl_vfb_0" instantiated alt_vip_vfb_rd_ctrl "rd_ctrl"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: video_out: "alt_vip_cl_vfb_0" instantiated alt_vip_video_output_bridge "video_out"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_sop_align/src_hdl/alt_vip_common_sop_align.sv
+Info: sync_ctrl: "alt_vip_cl_vfb_0" instantiated alt_vip_vfb_sync_ctrl "sync_ctrl"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: address_span_extender_0: "hps_ddr3" instantiated altera_address_span_extender "address_span_extender_0"
+Info: hps: "Running  for module: hps"
+Info: hps: HPS Main PLL counter settings: n = 0  m = 63
+Info: hps: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: hps: HPS model no longer supports simulation for HPS FPGA Bridges.
+Info: hps: "hps_ddr3" instantiated altera_hps "hps"
+Info: hps_reset_manager_0: "hps_ddr3" instantiated hps_reset_manager "hps_reset_manager_0"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "hps_ddr3" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: hps_snapshot_0_csr_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "hps_snapshot_0_csr_translator"
+Info: hps_ddr3_hps_h2f_lw_axi_master_agent: "mm_interconnect_0" instantiated altera_merlin_axi_master_ni "hps_ddr3_hps_h2f_lw_axi_master_agent"
+Info: hps_snapshot_0_csr_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "hps_snapshot_0_csr_agent"
+Info: hps_snapshot_0_csr_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "hps_snapshot_0_csr_agent_rsp_fifo"
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
+Info: hps_ddr3_hps_h2f_lw_axi_master_wr_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "hps_ddr3_hps_h2f_lw_axi_master_wr_limiter"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: hps_snapshot_0_csr_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "hps_snapshot_0_csr_burst_adapter"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_001"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: crosser: "mm_interconnect_0" instantiated altera_avalon_st_handshake_clock_crosser "crosser"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: hps_snapshot_0_master_translator: "mm_interconnect_1" instantiated altera_merlin_master_translator "hps_snapshot_0_master_translator"
+Info: hps_snapshot_0_master_agent: "mm_interconnect_1" instantiated altera_merlin_master_agent "hps_snapshot_0_master_agent"
+Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_1" instantiated altera_merlin_router "router_001"
+Info: router_003: "mm_interconnect_1" instantiated altera_merlin_router "router_003"
+Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: hps_snapshot_0_master_rsp_width_adapter: "mm_interconnect_1" instantiated altera_merlin_width_adapter "hps_snapshot_0_master_rsp_width_adapter"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: avalon_st_adapter: "mm_interconnect_1" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: vid_front: "video_in" instantiated alt_vip_video_input_bridge_resp "vid_front"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: vid_back: "video_in" instantiated alt_vip_video_input_bridge_cmd "vid_back"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: fpga_interfaces: "hps" instantiated altera_interface_generator "fpga_interfaces"
+Info: hps_io: "hps" instantiated altera_hps_io "hps_io"
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file C:/Users/SweeThianGoh/OneDrive/Desktop/4813/DE10_Nano_D8M_DDR3_CNN/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: border: "hps_io" instantiated altera_interface_generator "border"
+Info: soc_system: Done "soc_system" with 66 modules, 183 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

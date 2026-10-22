@@ -1,0 +1,4 @@
+arch/arm/mach-socfpga/clock_manager.c:64:12:do_showclocks	8	static
+arch/arm/mach-socfpga/clock_manager.c:16:6:cm_wait_for_lock	0	static
+arch/arm/mach-socfpga/clock_manager.c:37:5:cm_wait_for_fsm	16	static
+arch/arm/mach-socfpga/clock_manager.c:43:5:set_cpu_clk_info	16	static

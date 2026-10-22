@@ -1,0 +1,8 @@
+lib/efi_loader/efi_disk.c:210:28:efi_disk_flush_blocks	8	static
+lib/efi_loader/efi_disk.c:59:28:efi_disk_reset	8	static
+lib/efi_loader/efi_disk.c:276:21:efi_disk_add_dev.part.0	32	static
+lib/efi_loader/efi_disk.c:110:28:efi_disk_read_blocks	32	static
+lib/efi_loader/efi_disk.c:159:28:efi_disk_write_blocks	32	static
+lib/efi_loader/efi_disk.c:235:1:efi_fs_from_path	24	static
+lib/efi_loader/efi_disk.c:362:5:efi_disk_create_partitions	208	static
+lib/efi_loader/efi_disk.c:408:14:efi_disk_register	56	static

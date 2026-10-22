@@ -1,0 +1,6 @@
+arch/arm/mach-socfpga/wrap_sdram_config.c:288:36:socfpga_get_sdram_config	0	static
+arch/arm/mach-socfpga/wrap_sdram_config.c:293:6:socfpga_get_seq_ac_init	0	static
+arch/arm/mach-socfpga/wrap_sdram_config.c:299:6:socfpga_get_seq_inst_init	0	static
+arch/arm/mach-socfpga/wrap_sdram_config.c:305:43:socfpga_get_sdram_rwmgr_config	0	static
+arch/arm/mach-socfpga/wrap_sdram_config.c:310:39:socfpga_get_sdram_io_config	0	static
+arch/arm/mach-socfpga/wrap_sdram_config.c:315:41:socfpga_get_sdram_misc_config	0	static

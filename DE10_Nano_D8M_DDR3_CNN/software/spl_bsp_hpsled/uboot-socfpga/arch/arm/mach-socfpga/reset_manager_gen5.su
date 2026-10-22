@@ -1,0 +1,4 @@
+arch/arm/mach-socfpga/reset_manager_gen5.c:19:6:socfpga_per_reset	0	static
+arch/arm/mach-socfpga/reset_manager_gen5.c:56:6:socfpga_per_reset_all	0	static
+arch/arm/mach-socfpga/reset_manager_gen5.c:68:6:socfpga_bridges_set_handoff_regs	0	static
+arch/arm/mach-socfpga/reset_manager_gen5.c:90:6:socfpga_bridges_reset	8	static

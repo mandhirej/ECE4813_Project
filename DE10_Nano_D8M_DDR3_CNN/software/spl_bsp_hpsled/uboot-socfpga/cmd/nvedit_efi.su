@@ -1,0 +1,3 @@
+cmd/nvedit_efi.c:45:13:efi_dump_single_var	48	static
+cmd/nvedit_efi.c:196:5:do_env_print_efi	56	static
+cmd/nvedit_efi.c:346:5:do_env_set_efi	80	static

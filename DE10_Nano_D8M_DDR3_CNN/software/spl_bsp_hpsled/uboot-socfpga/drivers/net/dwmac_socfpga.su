@@ -1,0 +1,2 @@
+drivers/net/dwmac_socfpga.c:26:12:dwmac_socfpga_ofdata_to_platdata	96	static
+drivers/net/dwmac_socfpga.c:65:12:dwmac_socfpga_probe	32	static

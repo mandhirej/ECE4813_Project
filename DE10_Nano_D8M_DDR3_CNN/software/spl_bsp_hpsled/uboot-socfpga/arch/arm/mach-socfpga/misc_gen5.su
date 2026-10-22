@@ -1,0 +1,7 @@
+arch/arm/mach-socfpga/misc_gen5.c:84:12:socfpga_fpga_id	24	static
+arch/arm/mach-socfpga/misc_gen5.c:119:5:print_cpuinfo	8	static
+arch/arm/mach-socfpga/misc_gen5.c:133:5:arch_misc_init	16	static
+arch/arm/mach-socfpga/misc_gen5.c:157:6:socfpga_sdram_remap_zero	0	static
+arch/arm/mach-socfpga/misc_gen5.c:182:5:arch_early_init_r	8	static
+arch/arm/mach-socfpga/misc_gen5.c:214:6:socfpga_sdram_apply_static_cfg	0	static
+arch/arm/mach-socfpga/misc_gen5.c:242:6:do_bridge_reset	8	static

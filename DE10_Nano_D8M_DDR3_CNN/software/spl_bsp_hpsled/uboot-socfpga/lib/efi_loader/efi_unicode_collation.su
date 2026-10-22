@@ -1,0 +1,8 @@
+lib/efi_loader/efi_unicode_collation.c:285:20:efi_str_to_fat	32	static
+lib/efi_loader/efi_unicode_collation.c:252:20:efi_fat_to_str	16	static
+lib/efi_loader/efi_unicode_collation.c:232:20:efi_str_upr	8	static
+lib/efi_loader/efi_unicode_collation.c:48:26:efi_stri_coll	16	static
+lib/efi_loader/efi_unicode_collation.c:210:20:efi_str_lwr	8	static
+lib/efi_loader/efi_unicode_collation.c:77:12:next_lower	8	static
+lib/efi_loader/efi_unicode_collation.c:102:13:metai_match	24	static
+lib/efi_loader/efi_unicode_collation.c:186:20:efi_metai_match	16	static

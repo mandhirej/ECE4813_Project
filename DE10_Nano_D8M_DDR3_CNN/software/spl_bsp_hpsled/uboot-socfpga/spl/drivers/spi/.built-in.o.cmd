@@ -1,0 +1,1 @@
+cmd_spl/drivers/spi/built-in.o :=  arm-linux-gnueabihf-ld.bfd   -r -o spl/drivers/spi/built-in.o spl/drivers/spi/spi-uclass.o spl/drivers/spi/spi-mem.o spl/drivers/spi/cadence_qspi.o spl/drivers/spi/cadence_qspi_apb.o spl/drivers/spi/designware_spi.o 

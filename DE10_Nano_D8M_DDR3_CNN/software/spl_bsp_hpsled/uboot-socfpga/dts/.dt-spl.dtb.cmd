@@ -1,0 +1,1 @@
+cmd_dts/dt-spl.dtb := ./tools/fdtgrep -b u-boot,dm-pre-reloc -b u-boot,dm-spl -RT arch/arm/dts/socfpga_cyclone5_socdk.dtb -n /chosen -n /config -O dtb | ./tools/fdtgrep -r -O dtb - -o dts/dt-spl.dtb -P u-boot,dm-pre-reloc -P u-boot,dm-spl -P u-boot,dm-tpl -P pinctrl-0 -P pinctrl-names -P clocks -P clock-names -P interrupt-parent -P interrupts

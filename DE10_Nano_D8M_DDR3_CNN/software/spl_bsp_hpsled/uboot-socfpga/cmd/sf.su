@@ -1,0 +1,2 @@
+cmd/sf.c:71:14:bytes_per_second	8	static
+cmd/sf.c:543:12:do_spi_flash	120	static

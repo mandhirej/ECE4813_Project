@@ -1,0 +1,6 @@
+.socfpga_cyclone5_de1_soc.dtb.pre.o: \
+ arch/arm/dts/.socfpga_cyclone5_de1_soc.dtb.pre.tmp \
+ include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/socfpga_cyclone5.dtsi arch/arm/dts/socfpga.dtsi \
+ arch/arm/dts/include/dt-bindings/reset/altr,rst-mgr.h \
+ arch/arm/dts/socfpga-common-u-boot.dtsi

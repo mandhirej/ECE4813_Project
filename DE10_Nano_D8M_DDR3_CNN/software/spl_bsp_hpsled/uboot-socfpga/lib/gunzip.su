@@ -1,0 +1,5 @@
+lib/gunzip.c:28:7:gzalloc	0	static
+lib/gunzip.c:40:6:gzfree	0	static
+lib/gunzip.c:45:5:gzip_parse_header	16	static
+lib/gunzip.c:276:5:zunzip	96	static
+lib/gunzip.c:73:5:gunzip	32	static

@@ -1,0 +1,5 @@
+arch/arm/mach-socfpga/board.c:21:6:s_init	0	static
+arch/arm/mach-socfpga/board.c:41:5:board_init	0	static
+arch/arm/mach-socfpga/board.c:49:5:dram_init_banksize	8	static
+arch/arm/mach-socfpga/board.c:61:5:board_usb_init	24	static
+arch/arm/mach-socfpga/board.c:84:5:g_dnl_board_usb_cable_connected	0	static

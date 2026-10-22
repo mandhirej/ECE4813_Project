@@ -1,0 +1,1 @@
+arch/arm/mach-socfpga/wrap_iocsr_config.c:13:5:iocsr_get_config_table	0	static

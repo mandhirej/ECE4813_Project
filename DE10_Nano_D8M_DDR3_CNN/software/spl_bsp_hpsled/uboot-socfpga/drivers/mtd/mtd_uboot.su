@@ -1,0 +1,5 @@
+drivers/mtd/mtd_uboot.c:19:20:get_mtdids	8	static
+drivers/mtd/mtd_uboot.c:55:5:mtd_search_alternate_name	32	static
+drivers/mtd/mtd_uboot.c:198:5:mtd_probe_devices	80	static
+drivers/mtd/mtd_uboot.c:396:5:mtd_arg_off	48	static
+drivers/mtd/mtd_uboot.c:412:5:mtd_arg_off_size	56	static

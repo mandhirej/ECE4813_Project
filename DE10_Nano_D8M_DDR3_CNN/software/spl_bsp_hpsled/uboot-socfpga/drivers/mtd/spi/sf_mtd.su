@@ -1,0 +1,6 @@
+drivers/mtd/spi/sf_mtd.c:71:13:spi_flash_mtd_sync	0	static
+drivers/mtd/spi/sf_mtd.c:55:12:spi_flash_mtd_write	8	static
+drivers/mtd/spi/sf_mtd.c:39:12:spi_flash_mtd_read	8	static
+drivers/mtd/spi/sf_mtd.c:16:12:spi_flash_mtd_erase	16	static
+drivers/mtd/spi/sf_mtd.c:84:5:spi_flash_mtd_register	24	static
+drivers/mtd/spi/sf_mtd.c:125:6:spi_flash_mtd_unregister	16	static

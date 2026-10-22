@@ -1,0 +1,2 @@
+arch/arm/mach-socfpga/system_manager_gen5.c:54:6:sysmgr_pinmux_init	24	static
+arch/arm/mach-socfpga/system_manager_gen5.c:74:6:sysmgr_config_warmrstcfgio	0	static

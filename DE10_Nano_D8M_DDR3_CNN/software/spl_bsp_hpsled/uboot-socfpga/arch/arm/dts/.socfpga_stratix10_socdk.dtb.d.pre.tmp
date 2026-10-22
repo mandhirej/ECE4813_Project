@@ -1,0 +1,7 @@
+.socfpga_stratix10_socdk.dtb.pre.o: \
+ arch/arm/dts/.socfpga_stratix10_socdk.dtb.pre.tmp \
+ include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/socfpga_stratix10.dtsi \
+ arch/arm/dts/include/dt-bindings/reset/altr,rst-mgr-s10.h \
+ arch/arm/dts/include/dt-bindings/gpio/gpio.h \
+ arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi

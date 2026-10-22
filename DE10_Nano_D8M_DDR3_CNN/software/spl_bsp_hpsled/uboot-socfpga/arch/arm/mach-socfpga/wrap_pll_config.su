@@ -1,0 +1,4 @@
+arch/arm/mach-socfpga/wrap_pll_config.c:123:32:cm_get_default_config	0	static
+arch/arm/mach-socfpga/wrap_pll_config.c:128:20:cm_get_osc_clk_hz	0	static
+arch/arm/mach-socfpga/wrap_pll_config.c:138:20:cm_get_f2s_per_ref_clk_hz	0	static
+arch/arm/mach-socfpga/wrap_pll_config.c:143:20:cm_get_f2s_sdr_ref_clk_hz	0	static

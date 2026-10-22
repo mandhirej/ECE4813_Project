@@ -1,0 +1,6 @@
+common/spl/spl_mmc.c:53:5:mmc_load_image_raw_sector	24	static
+common/spl/spl_mmc.c:225:5:spl_start_uboot	0	static
+common/spl/spl_mmc.c:287:12:spl_boot_mode	0	static
+common/spl/spl_mmc.c:300:5:spl_boot_partition	0	static
+common/spl/spl_mmc.c:306:5:spl_mmc_load	120	static
+common/spl/spl_mmc.c:396:5:spl_mmc_load_image	24	static

@@ -1,0 +1,8 @@
+lib/hashtable.c:725:12:drop_var_from_set.part.0	24	static
+lib/hashtable.c:102:5:hcreate_r	16	static
+lib/hashtable.c:142:6:hdestroy_r	0	static
+lib/hashtable.c:204:5:hmatch_r	32	static
+lib/hashtable.c:275:5:hsearch_r	56	static
+lib/hashtable.c:450:5:hdelete_r	72	static
+lib/hashtable.c:787:5:himport_r	80	dynamic
+lib/hashtable.c:981:5:hwalk_r	24	static

@@ -1,0 +1,7 @@
+drivers/reset/reset-socfpga.c:90:12:socfpga_reset_request	0	static
+drivers/reset/reset-socfpga.c:63:12:socfpga_reset_assert	8	static
+drivers/reset/reset-socfpga.c:75:12:socfpga_reset_deassert	16	static
+drivers/reset/reset-socfpga.c:127:12:socfpga_reset_remove	8	static
+drivers/reset/reset-socfpga.c:113:12:socfpga_reset_probe	16	static
+drivers/reset/reset-socfpga.c:142:12:socfpga_reset_bind	24	static
+drivers/reset/reset-socfpga.c:98:12:socfpga_reset_free	0	static

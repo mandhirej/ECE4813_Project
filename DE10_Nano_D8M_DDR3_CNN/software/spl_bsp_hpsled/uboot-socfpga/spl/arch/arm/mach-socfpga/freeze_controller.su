@@ -1,0 +1,2 @@
+arch/arm/mach-socfpga/freeze_controller.c:25:6:sys_mgr_frzctrl_freeze_req	0	static
+arch/arm/mach-socfpga/freeze_controller.c:106:6:sys_mgr_frzctrl_thaw_req	8	static

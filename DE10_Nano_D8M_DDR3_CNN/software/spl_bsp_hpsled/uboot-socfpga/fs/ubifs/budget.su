@@ -1,0 +1,2 @@
+fs/ubifs/budget.c:172:5:ubifs_calc_min_idx_lebs	24	static
+fs/ubifs/budget.c:633:11:ubifs_reported_space	24	static

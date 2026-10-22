@@ -1777,6 +1777,8 @@ module suit_stack_ui_shader_v16(
                 "Y": case(row) 0:font5x7_row=5'b10001;1:font5x7_row=5'b10001;2:font5x7_row=5'b01010;3:font5x7_row=5'b00100;4:font5x7_row=5'b00100;5:font5x7_row=5'b00100;default:font5x7_row=5'b00100;endcase
                 "Z": case(row) 0:font5x7_row=5'b11111;1:font5x7_row=5'b00001;2:font5x7_row=5'b00010;3:font5x7_row=5'b00100;4:font5x7_row=5'b01000;5:font5x7_row=5'b10000;default:font5x7_row=5'b11111;endcase
                 ":": case(row) 0:font5x7_row=5'b00000;1:font5x7_row=5'b00100;2:font5x7_row=5'b00100;3:font5x7_row=5'b00000;4:font5x7_row=5'b00100;5:font5x7_row=5'b00100;default:font5x7_row=5'b00000;endcase
+                "@": case(row) 0,6:font5x7_row=5'b11111;2,4:font5x7_row=5'b10101;default:font5x7_row=5'b10001;endcase   // small card icon
+                "s": case(row) 2:font5x7_row=5'b01110;3:font5x7_row=5'b10000;4:font5x7_row=5'b01110;5:font5x7_row=5'b00001;6:font5x7_row=5'b11110;default:font5x7_row=5'b00000;endcase
                 "?": case(row) 0:font5x7_row=5'b01110;1:font5x7_row=5'b10001;2:font5x7_row=5'b00010;3:font5x7_row=5'b00100;4:font5x7_row=5'b00100;5:font5x7_row=5'b00000;default:font5x7_row=5'b00100;endcase
                 "/": case(row) 0:font5x7_row=5'b00001;1:font5x7_row=5'b00010;2:font5x7_row=5'b00010;3:font5x7_row=5'b00100;4:font5x7_row=5'b01000;5:font5x7_row=5'b01000;default:font5x7_row=5'b10000;endcase
                 "+": case(row) 2:font5x7_row=5'b00100;3:font5x7_row=5'b11111;4:font5x7_row=5'b00100;default:font5x7_row=5'b00000;endcase
@@ -1906,17 +1908,20 @@ module suit_stack_ui_shader_v16(
         end else text_on=0;
       end
       else if(y>=11&&y<18)begin ty=11;zoom=0;line="TEAM STATUS                 ";ink=ORANGE;end
-      // score carries own + 3*opponent jokers (0..2 each, see fpga_set_stats on the HPS)
-      else if(y>=23&&y<30)begin ty=23;line="MY JKR  OP JKR LEFT  ROUND  ";ink=CYAN;end
+      // score carries own + 3*opponent jokers (0..2 each, see fpga_set_stats on the HPS).
+      // Labels at columns 0, 7, 14 ("@" = small card icon), 21; each number centred
+      // under its label. Both strings are exactly 28 characters (a longer literal
+      // loses its first characters).
+      else if(y>=23&&y<30)begin ty=23;line="MY JKR OP JKR @ LEFT ROUND  ";ink=CYAN;end
       else if(y>=32&&y<39)begin
-        ty=32;line="0       0      00    000     ";
-        line[223 -:8]=digit_ascii(score%3);
-        line[223-8*8 -:8]=digit_ascii(score/3);
-        line[223-15*8 -:8]=remaining_cards>=10?"1":"0";
-        line[223-16*8 -:8]=digit_ascii(remaining_cards>=10?remaining_cards-10:remaining_cards);
-        line[223-21*8 -:8]=digit_ascii(hun);
-        line[223-22*8 -:8]=digit_ascii(ten);
-        line[223-23*8 -:8]=digit_ascii(one);
+        ty=32;line="  0      0      00    000   ";
+        line[223-2*8 -:8]=digit_ascii(score%3);
+        line[223-9*8 -:8]=digit_ascii(score/3);
+        line[223-16*8 -:8]=remaining_cards>=10?"1":"0";
+        line[223-17*8 -:8]=digit_ascii(remaining_cards>=10?remaining_cards-10:remaining_cards);
+        line[223-22*8 -:8]=digit_ascii(hun);
+        line[223-23*8 -:8]=digit_ascii(ten);
+        line[223-24*8 -:8]=digit_ascii(one);
       end
       else if(y>=43&&y<50)begin ty=43;line="INSTRUCTIONS / TURN         ";ink=CYAN;end
       else if(y>=52&&y<66)begin

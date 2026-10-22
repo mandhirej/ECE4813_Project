@@ -1,0 +1,11 @@
+common/usb_hub.c:107:12:usb_set_port_feature	40	static
+common/usb_hub.c:88:12:usb_get_hub_descriptor	40	static
+common/usb_hub.c:100:12:usb_clear_port_feature.isra	40	static
+common/usb_hub.c:58:13:usb_hub_reset_devices	0	static
+common/usb_hub.c:69:6:usb_hub_is_root_hub	8	static
+common/usb_hub.c:121:5:usb_get_port_status	40	static
+common/usb_hub.c:335:5:usb_hub_port_connect_change	288	static
+common/usb_hub.c:610:12:usb_hub_configure	776	static
+common/usb_hub.c:915:5:usb_hub_probe	0	static
+common/usb_hub.c:927:5:usb_hub_scan	8	static
+common/usb_hub.c:934:12:usb_hub_post_probe	0	static

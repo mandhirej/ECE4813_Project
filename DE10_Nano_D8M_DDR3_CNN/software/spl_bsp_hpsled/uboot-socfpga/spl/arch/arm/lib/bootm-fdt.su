@@ -1,0 +1,1 @@
+arch/arm/lib/bootm-fdt.c:34:5:arch_fixup_fdt	24	static

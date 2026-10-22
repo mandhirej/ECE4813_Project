@@ -1,0 +1,9 @@
+drivers/mtd/spi/spi-nor-tiny.c:352:12:spi_nor_erase	0	static
+drivers/mtd/spi/spi-nor-tiny.c:417:12:spi_nor_write	0	static
+drivers/mtd/spi/spi-nor-tiny.c:381:12:spi_nor_read	80	static
+drivers/mtd/spi/spi-nor-tiny.c:47:12:spi_nor_read_reg	72	static
+drivers/mtd/spi/spi-nor-tiny.c:251:12:read_sr	16	static
+drivers/mtd/spi/spi-nor-tiny.c:320:12:spi_nor_wait_till_ready_with_timeout.constprop	32	static
+drivers/mtd/spi/spi-nor-tiny.c:63:12:spi_nor_write_reg	72	static
+drivers/mtd/spi/spi-nor-tiny.c:712:5:spi_nor_scan	56	static
+drivers/mtd/spi/spi-nor-tiny.c:801:5:spi_flash_cmd_get_sw_write_prot	0	static

@@ -1,0 +1,2 @@
+drivers/sysreset/sysreset_socfpga.c:18:12:socfpga_sysreset_request	8	static
+drivers/sysreset/sysreset_socfpga.c:38:12:socfpga_sysreset_probe	16	static

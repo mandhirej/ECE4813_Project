@@ -1,0 +1,8 @@
+drivers/mmc/dw_mmc.c:20:12:dwmci_wait_reset	0	static
+drivers/mmc/dw_mmc.c:100:12:dwmci_fifo_ready	24	static
+drivers/mmc/dw_mmc.c:239:12:dwmci_send_cmd	64	dynamic
+drivers/mmc/dw_mmc.c:403:12:dwmci_setup_bus.isra	16	static
+drivers/mmc/dw_mmc.c:466:12:dwmci_set_ios	16	static
+drivers/mmc/dw_mmc.c:567:5:dwmci_probe	16	static
+drivers/mmc/dw_mmc.c:587:6:dwmci_setup_cfg	8	static
+drivers/mmc/dw_mmc.c:614:5:dwmci_bind	0	static

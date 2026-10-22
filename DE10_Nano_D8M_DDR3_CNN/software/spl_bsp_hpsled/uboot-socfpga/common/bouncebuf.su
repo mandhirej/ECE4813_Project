@@ -1,0 +1,2 @@
+common/bouncebuf.c:33:5:bounce_buffer_start	16	static
+common/bouncebuf.c:64:5:bounce_buffer_stop	8	static

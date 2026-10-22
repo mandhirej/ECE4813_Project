@@ -1,0 +1,6 @@
+lib/efi_loader/efi_device_path_to_text.c:29:13:efi_str_to_u16	16	static
+lib/efi_loader/efi_device_path_to_text.c:44:14:dp_unknown.isra	8	static
+lib/efi_loader/efi_device_path_to_text.c:244:14:efi_convert_single_device_node_to_text	72	static
+lib/efi_loader/efi_device_path_to_text.c:318:25:efi_convert_device_path_to_text	1048	static
+lib/efi_loader/efi_device_path_to_text.c:285:25:efi_convert_device_node_to_text	520	static
+lib/efi_loader/efi_device_path_to_text.c:346:11:efi_dp_str	8	static

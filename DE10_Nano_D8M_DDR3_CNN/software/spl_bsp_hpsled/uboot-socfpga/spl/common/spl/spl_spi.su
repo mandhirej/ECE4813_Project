@@ -1,0 +1,1 @@
+common/spl/spl_spi.c:70:12:spl_spi_load_image	24	static

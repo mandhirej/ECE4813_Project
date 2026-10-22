@@ -1,0 +1,4 @@
+arch/arm/mach-socfpga/fpga_manager.c:24:12:is_fpgamgr_initdone_high	0	static
+arch/arm/mach-socfpga/fpga_manager.c:33:5:fpgamgr_get_mode	0	static
+arch/arm/mach-socfpga/fpga_manager.c:42:5:fpgamgr_test_fpga_ready	8	static
+arch/arm/mach-socfpga/fpga_manager.c:59:5:fpgamgr_poll_fpga_ready	8	static

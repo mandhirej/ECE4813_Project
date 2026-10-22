@@ -1,0 +1,3 @@
+lib/efi_driver/efi_block_device.c:84:14:efi_bl_write	32	static
+lib/efi_driver/efi_block_device.c:55:14:efi_bl_read	32	static
+lib/efi_driver/efi_block_device.c:131:12:efi_bl_bind	48	static

@@ -1,0 +1,13 @@
+drivers/reset/reset-uclass.c:32:12:reset_get_by_index_tail.part.0.constprop	24	static
+drivers/reset/reset-uclass.c:74:5:reset_get_by_index	96	static
+drivers/reset/reset-uclass.c:87:5:reset_get_by_index_nodev	96	static
+drivers/reset/reset-uclass.c:134:5:reset_get_by_name	16	static
+drivers/reset/reset-uclass.c:152:5:reset_request	0	static
+drivers/reset/reset-uclass.c:161:5:reset_free	0	static
+drivers/reset/reset-uclass.c:170:5:reset_assert	0	static
+drivers/reset/reset-uclass.c:179:5:reset_assert_bulk	16	static
+drivers/reset/reset-uclass.c:192:5:reset_deassert	0	static
+drivers/reset/reset-uclass.c:201:5:reset_deassert_bulk	16	static
+drivers/reset/reset-uclass.c:214:5:reset_status	0	static
+drivers/reset/reset-uclass.c:223:5:reset_release_all	16	static
+drivers/reset/reset-uclass.c:100:5:reset_get_bulk	24	static

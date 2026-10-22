@@ -1,0 +1,3 @@
+net/checksum.c:13:10:compute_ip_checksum	8	static
+net/checksum.c:36:10:add_ip_checksums	0	static
+net/checksum.c:56:5:ip_checksum_ok	8	static

@@ -1,0 +1,17 @@
+drivers/serial/ns16550.c:391:12:ns16550_serial_getinfo	8	static
+drivers/serial/ns16550.c:434:5:ns16550_serial_ofdata_to_platdata	16	static
+drivers/serial/ns16550.c:110:12:ns16550_readb.isra	0	static
+drivers/serial/ns16550.c:335:12:ns16550_serial_getc	8	static
+drivers/serial/ns16550.c:325:12:ns16550_serial_pending	8	static
+drivers/serial/ns16550.c:95:13:ns16550_writeb.isra	0	static
+drivers/serial/ns16550.c:305:12:ns16550_serial_putc	16	static
+drivers/serial/ns16550.c:358:12:ns16550_serial_setconfig	8	static
+drivers/serial/ns16550.c:149:13:NS16550_setbrg	16	static
+drivers/serial/ns16550.c:345:12:ns16550_serial_setbrg	16	static
+drivers/serial/ns16550.c:142:5:ns16550_calc_divisor	8	static
+drivers/serial/ns16550.c:160:6:NS16550_init	16	static
+drivers/serial/ns16550.c:410:5:ns16550_serial_probe	24	static
+drivers/serial/ns16550.c:202:6:NS16550_reinit	16	static
+drivers/serial/ns16550.c:212:6:NS16550_putc	16	static
+drivers/serial/ns16550.c:229:6:NS16550_getc	8	static
+drivers/serial/ns16550.c:241:5:NS16550_tstc	8	static

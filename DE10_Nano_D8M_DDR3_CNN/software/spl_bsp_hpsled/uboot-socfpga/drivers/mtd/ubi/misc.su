@@ -1,0 +1,5 @@
+drivers/mtd/ubi/misc.c:23:5:ubi_calc_data_len	8	static
+drivers/mtd/ubi/misc.c:49:5:ubi_check_volume	48	static
+drivers/mtd/ubi/misc.c:93:6:ubi_update_reserved	0	static
+drivers/mtd/ubi/misc.c:112:6:ubi_calculate_reserved	0	static
+drivers/mtd/ubi/misc.c:135:5:ubi_check_pattern	8	static

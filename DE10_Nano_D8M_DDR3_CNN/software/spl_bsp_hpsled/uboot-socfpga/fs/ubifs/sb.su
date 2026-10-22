@@ -1,0 +1,7 @@
+fs/ubifs/key.h:49:24:key_r5_hash	8	static
+fs/ubifs/key.h:69:24:key_test_hash	16	static
+fs/ubifs/sb.c:679:12:fixup_leb	24	static
+fs/ubifs/sb.c:482:23:ubifs_read_sb_node	24	static
+fs/ubifs/sb.c:508:5:ubifs_write_sb_node	16	static
+fs/ubifs/sb.c:524:5:ubifs_read_superblock	72	static
+fs/ubifs/sb.c:790:5:ubifs_fixup_free_space	24	static

@@ -1,0 +1,1 @@
+cmd_spl/drivers/ddr/altera/built-in.o :=  arm-linux-gnueabihf-ld.bfd   -r -o spl/drivers/ddr/altera/built-in.o spl/drivers/ddr/altera/sdram_soc32.o spl/drivers/ddr/altera/sdram_gen5.o spl/drivers/ddr/altera/sequencer.o 

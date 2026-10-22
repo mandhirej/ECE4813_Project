@@ -1,0 +1,8 @@
+arch/arm/mach-socfpga/misc.c:41:5:dram_init	8	static
+arch/arm/mach-socfpga/misc.c:49:6:enable_caches	8	static
+arch/arm/mach-socfpga/misc.c:60:6:v7_outer_cache_enable	16	static
+arch/arm/mach-socfpga/misc.c:68:6:v7_outer_cache_disable	0	static
+arch/arm/mach-socfpga/misc.c:74:6:socfpga_pl310_clear	16	static
+arch/arm/mach-socfpga/misc.c:131:5:overwrite_console	0	static
+arch/arm/mach-socfpga/misc.c:139:6:socfpga_fpga_add	8	static
+arch/arm/mach-socfpga/misc.c:146:5:arch_cpu_init	8	static

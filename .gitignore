@@ -41,3 +41,6 @@ build_*/
 gesture_raw/
 gesture_dataset_64x64/
 gesture_captures/
+
+# the Quartus folder is pushed complete (sources, .sof, db caches, reports, software)
+!DE10_Nano_D8M_DDR3_CNN/**

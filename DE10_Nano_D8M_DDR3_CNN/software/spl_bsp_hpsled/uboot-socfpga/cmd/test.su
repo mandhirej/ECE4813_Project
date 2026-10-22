@@ -1,0 +1,3 @@
+cmd/test.c:193:12:do_false	0	static
+cmd/test.c:204:12:do_true	0	static
+cmd/test.c:53:12:do_test	40	static

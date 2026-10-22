@@ -1,0 +1,2 @@
+drivers/rtc/rtc-lib.c:26:5:rtc_month_days	16	static
+drivers/rtc/rtc-lib.c:38:6:rtc_to_tm	24	static

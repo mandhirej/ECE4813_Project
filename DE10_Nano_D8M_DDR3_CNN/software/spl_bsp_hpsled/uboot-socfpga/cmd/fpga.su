@@ -1,0 +1,7 @@
+cmd/fpga.c:387:12:do_fpga_wrapper	24	static
+cmd/fpga.c:18:13:do_fpga_get_device	8	static
+cmd/fpga.c:143:12:do_fpga_info	8	static
+cmd/fpga.c:35:12:do_fpga_check_params.constprop.isra	24	static
+cmd/fpga.c:181:12:do_fpga_loadb	32	static
+cmd/fpga.c:166:12:do_fpga_load	32	static
+cmd/fpga.c:151:12:do_fpga_dump	32	static

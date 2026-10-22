@@ -1,0 +1,4 @@
+cmd/bootefi.c:211:21:efi_install_fdt	408	static
+cmd/bootefi.c:291:21:do_bootefi_exec	56	static
+cmd/bootefi.c:556:12:do_bootefi	40	static
+cmd/bootefi.c:626:6:efi_set_bootdev	48	static

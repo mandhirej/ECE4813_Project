@@ -1,0 +1,4 @@
+arch/arm/mach-socfpga/scan_manager.c:114:1:scan_mgr_jtag_insn_data	16	static
+arch/arm/mach-socfpga/scan_manager.c:139:12:scan_mgr_io_scan_chain_prg	32	static
+arch/arm/mach-socfpga/scan_manager.c:197:5:scan_mgr_configure_iocsr	8	static
+arch/arm/mach-socfpga/scan_manager.c:214:5:scan_mgr_get_fpga_id	24	static

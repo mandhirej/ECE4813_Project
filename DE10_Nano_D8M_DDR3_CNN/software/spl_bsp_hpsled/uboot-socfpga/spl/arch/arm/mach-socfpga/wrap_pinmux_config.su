@@ -1,0 +1,1 @@
+arch/arm/mach-socfpga/wrap_pinmux_config.c:12:6:sysmgr_get_pinmux_table	0	static

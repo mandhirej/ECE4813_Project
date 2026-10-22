@@ -1,0 +1,6 @@
+drivers/ddr/altera/sdram_gen5.c:127:13:sdram_set_rule	8	static
+drivers/ddr/altera/sdram_gen5.c:501:22:sdram_calculate_size	16	static
+drivers/ddr/altera/sdram_gen5.c:652:12:altera_gen5_sdram_get_info	8	static
+drivers/ddr/altera/sdram_gen5.c:570:12:altera_gen5_sdram_ofdata_to_platdata	8	static
+drivers/ddr/altera/sdram_gen5.c:453:5:sdram_mmr_init_full	72	static
+drivers/ddr/altera/sdram_gen5.c:581:12:altera_gen5_sdram_probe	32	static

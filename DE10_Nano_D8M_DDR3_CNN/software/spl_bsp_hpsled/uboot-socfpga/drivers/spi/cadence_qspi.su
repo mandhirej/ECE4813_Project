@@ -1,0 +1,7 @@
+drivers/spi/cadence_qspi.c:185:12:cadence_spi_set_mode	16	static
+drivers/spi/cadence_qspi.c:201:12:cadence_spi_xfer	56	static
+drivers/spi/cadence_qspi.c:296:12:cadence_spi_ofdata_to_platdata	16	static
+drivers/spi/cadence_qspi.c:178:12:cadence_spi_remove	8	static
+drivers/spi/cadence_qspi.c:152:12:cadence_spi_probe	24	static
+drivers/spi/cadence_qspi.c:21:12:cadence_spi_write_speed.isra	40	static
+drivers/spi/cadence_qspi.c:117:12:cadence_spi_set_speed	64	static

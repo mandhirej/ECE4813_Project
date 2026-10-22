@@ -1,0 +1,2 @@
+drivers/mmc/mmc_write.c:69:7:mmc_berase	64	static
+drivers/mmc/mmc_write.c:187:7:mmc_bwrite	88	static

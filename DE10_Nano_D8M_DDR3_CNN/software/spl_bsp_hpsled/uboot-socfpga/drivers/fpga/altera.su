@@ -1,0 +1,4 @@
+drivers/fpga/altera.c:79:1:altera_desc_to_fpga	8	static
+drivers/fpga/altera.c:101:5:altera_load	16	static
+drivers/fpga/altera.c:115:5:altera_dump	16	static
+drivers/fpga/altera.c:129:5:altera_info	16	static

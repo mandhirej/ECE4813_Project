@@ -1,0 +1,12 @@
+arch/arm/mach-socfpga/clock_manager_gen5.c:318:21:cm_get_main_vco_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:333:21:cm_get_per_vco_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:33:12:cm_write_with_phase.constprop	24	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:69:5:cm_basic_init	16	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:358:15:cm_get_mpu_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:372:15:cm_get_sdram_clk_hz	16	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:403:14:cm_get_l4_sp_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:437:14:cm_get_mmc_controller_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:467:14:cm_get_qspi_controller_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:495:14:cm_get_spi_controller_clk_hz	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:509:5:dw_spi_get_clk	8	static
+arch/arm/mach-socfpga/clock_manager_gen5.c:516:6:cm_print_clock_quick_summary	8	static
