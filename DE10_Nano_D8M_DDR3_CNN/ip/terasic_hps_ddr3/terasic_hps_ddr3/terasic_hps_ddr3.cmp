@@ -1,0 +1,114 @@
+	component terasic_hps_ddr3 is
+		port (
+			clk_clk                              : in    std_logic                      := 'X';             -- clk
+			h2f_reset_reset_n                    : out   std_logic;                                         -- reset_n
+			hps_0_hps_io_hps_io_sdio_inst_CMD    : inout std_logic                      := 'X';             -- hps_io_sdio_inst_CMD
+			hps_0_hps_io_hps_io_sdio_inst_D0     : inout std_logic                      := 'X';             -- hps_io_sdio_inst_D0
+			hps_0_hps_io_hps_io_sdio_inst_D1     : inout std_logic                      := 'X';             -- hps_io_sdio_inst_D1
+			hps_0_hps_io_hps_io_sdio_inst_CLK    : out   std_logic;                                         -- hps_io_sdio_inst_CLK
+			hps_0_hps_io_hps_io_sdio_inst_D2     : inout std_logic                      := 'X';             -- hps_io_sdio_inst_D2
+			hps_0_hps_io_hps_io_sdio_inst_D3     : inout std_logic                      := 'X';             -- hps_io_sdio_inst_D3
+			hps_0_hps_io_hps_io_uart0_inst_RX    : in    std_logic                      := 'X';             -- hps_io_uart0_inst_RX
+			hps_0_hps_io_hps_io_uart0_inst_TX    : out   std_logic;                                         -- hps_io_uart0_inst_TX
+			hps_0_hps_io_hps_io_gpio_inst_GPIO53 : inout std_logic                      := 'X';             -- hps_io_gpio_inst_GPIO53
+			hps_f2h_sdram0_clock_clk             : in    std_logic                      := 'X';             -- clk
+			hps_f2h_sdram0_data_address          : in    std_logic_vector(25 downto 0)  := (others => 'X'); -- address
+			hps_f2h_sdram0_data_read             : in    std_logic                      := 'X';             -- read
+			hps_f2h_sdram0_data_readdata         : out   std_logic_vector(127 downto 0);                    -- readdata
+			hps_f2h_sdram0_data_write            : in    std_logic                      := 'X';             -- write
+			hps_f2h_sdram0_data_writedata        : in    std_logic_vector(127 downto 0) := (others => 'X'); -- writedata
+			hps_f2h_sdram0_data_readdatavalid    : out   std_logic;                                         -- readdatavalid
+			hps_f2h_sdram0_data_waitrequest      : out   std_logic;                                         -- waitrequest
+			hps_f2h_sdram0_data_byteenable       : in    std_logic_vector(15 downto 0)  := (others => 'X'); -- byteenable
+			hps_f2h_sdram0_data_burstcount       : in    std_logic_vector(8 downto 0)   := (others => 'X'); -- burstcount
+			hps_h2f_axi_master_awid              : out   std_logic_vector(11 downto 0);                     -- awid
+			hps_h2f_axi_master_awaddr            : out   std_logic_vector(29 downto 0);                     -- awaddr
+			hps_h2f_axi_master_awlen             : out   std_logic_vector(3 downto 0);                      -- awlen
+			hps_h2f_axi_master_awsize            : out   std_logic_vector(2 downto 0);                      -- awsize
+			hps_h2f_axi_master_awburst           : out   std_logic_vector(1 downto 0);                      -- awburst
+			hps_h2f_axi_master_awlock            : out   std_logic_vector(1 downto 0);                      -- awlock
+			hps_h2f_axi_master_awcache           : out   std_logic_vector(3 downto 0);                      -- awcache
+			hps_h2f_axi_master_awprot            : out   std_logic_vector(2 downto 0);                      -- awprot
+			hps_h2f_axi_master_awvalid           : out   std_logic;                                         -- awvalid
+			hps_h2f_axi_master_awready           : in    std_logic                      := 'X';             -- awready
+			hps_h2f_axi_master_wid               : out   std_logic_vector(11 downto 0);                     -- wid
+			hps_h2f_axi_master_wdata             : out   std_logic_vector(63 downto 0);                     -- wdata
+			hps_h2f_axi_master_wstrb             : out   std_logic_vector(7 downto 0);                      -- wstrb
+			hps_h2f_axi_master_wlast             : out   std_logic;                                         -- wlast
+			hps_h2f_axi_master_wvalid            : out   std_logic;                                         -- wvalid
+			hps_h2f_axi_master_wready            : in    std_logic                      := 'X';             -- wready
+			hps_h2f_axi_master_bid               : in    std_logic_vector(11 downto 0)  := (others => 'X'); -- bid
+			hps_h2f_axi_master_bresp             : in    std_logic_vector(1 downto 0)   := (others => 'X'); -- bresp
+			hps_h2f_axi_master_bvalid            : in    std_logic                      := 'X';             -- bvalid
+			hps_h2f_axi_master_bready            : out   std_logic;                                         -- bready
+			hps_h2f_axi_master_arid              : out   std_logic_vector(11 downto 0);                     -- arid
+			hps_h2f_axi_master_araddr            : out   std_logic_vector(29 downto 0);                     -- araddr
+			hps_h2f_axi_master_arlen             : out   std_logic_vector(3 downto 0);                      -- arlen
+			hps_h2f_axi_master_arsize            : out   std_logic_vector(2 downto 0);                      -- arsize
+			hps_h2f_axi_master_arburst           : out   std_logic_vector(1 downto 0);                      -- arburst
+			hps_h2f_axi_master_arlock            : out   std_logic_vector(1 downto 0);                      -- arlock
+			hps_h2f_axi_master_arcache           : out   std_logic_vector(3 downto 0);                      -- arcache
+			hps_h2f_axi_master_arprot            : out   std_logic_vector(2 downto 0);                      -- arprot
+			hps_h2f_axi_master_arvalid           : out   std_logic;                                         -- arvalid
+			hps_h2f_axi_master_arready           : in    std_logic                      := 'X';             -- arready
+			hps_h2f_axi_master_rid               : in    std_logic_vector(11 downto 0)  := (others => 'X'); -- rid
+			hps_h2f_axi_master_rdata             : in    std_logic_vector(63 downto 0)  := (others => 'X'); -- rdata
+			hps_h2f_axi_master_rresp             : in    std_logic_vector(1 downto 0)   := (others => 'X'); -- rresp
+			hps_h2f_axi_master_rlast             : in    std_logic                      := 'X';             -- rlast
+			hps_h2f_axi_master_rvalid            : in    std_logic                      := 'X';             -- rvalid
+			hps_h2f_axi_master_rready            : out   std_logic;                                         -- rready
+			hps_h2f_lw_axi_master_awid           : out   std_logic_vector(11 downto 0);                     -- awid
+			hps_h2f_lw_axi_master_awaddr         : out   std_logic_vector(20 downto 0);                     -- awaddr
+			hps_h2f_lw_axi_master_awlen          : out   std_logic_vector(3 downto 0);                      -- awlen
+			hps_h2f_lw_axi_master_awsize         : out   std_logic_vector(2 downto 0);                      -- awsize
+			hps_h2f_lw_axi_master_awburst        : out   std_logic_vector(1 downto 0);                      -- awburst
+			hps_h2f_lw_axi_master_awlock         : out   std_logic_vector(1 downto 0);                      -- awlock
+			hps_h2f_lw_axi_master_awcache        : out   std_logic_vector(3 downto 0);                      -- awcache
+			hps_h2f_lw_axi_master_awprot         : out   std_logic_vector(2 downto 0);                      -- awprot
+			hps_h2f_lw_axi_master_awvalid        : out   std_logic;                                         -- awvalid
+			hps_h2f_lw_axi_master_awready        : in    std_logic                      := 'X';             -- awready
+			hps_h2f_lw_axi_master_wid            : out   std_logic_vector(11 downto 0);                     -- wid
+			hps_h2f_lw_axi_master_wdata          : out   std_logic_vector(31 downto 0);                     -- wdata
+			hps_h2f_lw_axi_master_wstrb          : out   std_logic_vector(3 downto 0);                      -- wstrb
+			hps_h2f_lw_axi_master_wlast          : out   std_logic;                                         -- wlast
+			hps_h2f_lw_axi_master_wvalid         : out   std_logic;                                         -- wvalid
+			hps_h2f_lw_axi_master_wready         : in    std_logic                      := 'X';             -- wready
+			hps_h2f_lw_axi_master_bid            : in    std_logic_vector(11 downto 0)  := (others => 'X'); -- bid
+			hps_h2f_lw_axi_master_bresp          : in    std_logic_vector(1 downto 0)   := (others => 'X'); -- bresp
+			hps_h2f_lw_axi_master_bvalid         : in    std_logic                      := 'X';             -- bvalid
+			hps_h2f_lw_axi_master_bready         : out   std_logic;                                         -- bready
+			hps_h2f_lw_axi_master_arid           : out   std_logic_vector(11 downto 0);                     -- arid
+			hps_h2f_lw_axi_master_araddr         : out   std_logic_vector(20 downto 0);                     -- araddr
+			hps_h2f_lw_axi_master_arlen          : out   std_logic_vector(3 downto 0);                      -- arlen
+			hps_h2f_lw_axi_master_arsize         : out   std_logic_vector(2 downto 0);                      -- arsize
+			hps_h2f_lw_axi_master_arburst        : out   std_logic_vector(1 downto 0);                      -- arburst
+			hps_h2f_lw_axi_master_arlock         : out   std_logic_vector(1 downto 0);                      -- arlock
+			hps_h2f_lw_axi_master_arcache        : out   std_logic_vector(3 downto 0);                      -- arcache
+			hps_h2f_lw_axi_master_arprot         : out   std_logic_vector(2 downto 0);                      -- arprot
+			hps_h2f_lw_axi_master_arvalid        : out   std_logic;                                         -- arvalid
+			hps_h2f_lw_axi_master_arready        : in    std_logic                      := 'X';             -- arready
+			hps_h2f_lw_axi_master_rid            : in    std_logic_vector(11 downto 0)  := (others => 'X'); -- rid
+			hps_h2f_lw_axi_master_rdata          : in    std_logic_vector(31 downto 0)  := (others => 'X'); -- rdata
+			hps_h2f_lw_axi_master_rresp          : in    std_logic_vector(1 downto 0)   := (others => 'X'); -- rresp
+			hps_h2f_lw_axi_master_rlast          : in    std_logic                      := 'X';             -- rlast
+			hps_h2f_lw_axi_master_rvalid         : in    std_logic                      := 'X';             -- rvalid
+			hps_h2f_lw_axi_master_rready         : out   std_logic;                                         -- rready
+			memory_mem_a                         : out   std_logic_vector(14 downto 0);                     -- mem_a
+			memory_mem_ba                        : out   std_logic_vector(2 downto 0);                      -- mem_ba
+			memory_mem_ck                        : out   std_logic;                                         -- mem_ck
+			memory_mem_ck_n                      : out   std_logic;                                         -- mem_ck_n
+			memory_mem_cke                       : out   std_logic;                                         -- mem_cke
+			memory_mem_cs_n                      : out   std_logic;                                         -- mem_cs_n
+			memory_mem_ras_n                     : out   std_logic;                                         -- mem_ras_n
+			memory_mem_cas_n                     : out   std_logic;                                         -- mem_cas_n
+			memory_mem_we_n                      : out   std_logic;                                         -- mem_we_n
+			memory_mem_reset_n                   : out   std_logic;                                         -- mem_reset_n
+			memory_mem_dq                        : inout std_logic_vector(31 downto 0)  := (others => 'X'); -- mem_dq
+			memory_mem_dqs                       : inout std_logic_vector(3 downto 0)   := (others => 'X'); -- mem_dqs
+			memory_mem_dqs_n                     : inout std_logic_vector(3 downto 0)   := (others => 'X'); -- mem_dqs_n
+			memory_mem_odt                       : out   std_logic;                                         -- mem_odt
+			memory_mem_dm                        : out   std_logic_vector(3 downto 0);                      -- mem_dm
+			memory_oct_rzqin                     : in    std_logic                      := 'X'              -- oct_rzqin
+		);
+	end component terasic_hps_ddr3;
+

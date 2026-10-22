@@ -1,0 +1,43 @@
+# Quartus build caches and outputs (rebuild with Start Compilation)
+db/
+incremental_db/
+greybox_tmp/
+*.sof
+*.rbf
+*.qws
+*.stp
+*.rpt
+*.smsg
+*.qmsg
+*.done
+*.jdi
+*.pin
+*.sld
+
+# generated HPS BSP / u-boot sources (regenerate with the SoC EDS tools)
+DE10_Nano_D8M_DDR3_CNN/software/
+
+# Arm DS / GCC build outputs
+objs_*/
+*.o
+*.d
+*.objdump
+Atlas-Blinking-LED-Baremetal-GNU/atlas_main.axf
+.metadata/
+
+# backups and local copies
+*.bak
+*.bak.*
+*.before_*
+*.backup_*
+*VIVA_BACKUP*
+
+# Python / simulation outputs, datasets
+__pycache__/
+*.pyc
+build/
+build_*/
+*.zip
+gesture_raw/
+gesture_dataset_64x64/
+gesture_captures/

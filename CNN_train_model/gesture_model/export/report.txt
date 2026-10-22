@@ -1,0 +1,41 @@
+Frozen card conv layers; trained 4 FC rows only (classes 54..57).
+Trained 60 epochs. All numbers below use the exported INTEGER weights.
+
+[train] accuracy 1.000 (5576/5576)
+true\pred     fist     palm    peace  nothing
+     fist     1353        0        0        0
+     palm        0     1558        0        0
+    peace        0        0     1312        0
+  nothing        0        0        0     1353
+
+[val] accuracy 1.000 (26/26)
+true\pred     fist     palm    peace  nothing
+     fist        7        0        0        0
+     palm        0        9        0        0
+    peace        0        0        7        0
+  nothing        0        0        0        3
+
+[test] accuracy 0.962 (25/26)
+true\pred     fist     palm    peace  nothing
+     fist        6        1        0        0
+     palm        0        9        0        0
+    peace        0        0        7        0
+  nothing        0        0        0        3
+test top1-top2 margin (logit units): 0.9, 4.5, 1.2, 1.5, 1.5, 1.9, 0.7, 1.9, 1.7, 4.3, 4.6, 5.6, 1.2, 4.6, 5.0, 4.0, 3.3, 4.3, 3.9, 1.2, 6.2, 7.3, 3.4, 2.9, 4.6, 3.4
+
+[cross-session train A -> test B] accuracy 0.882 (2048/2322)
+true\pred     fist     palm    peace  nothing
+     fist      846       33       32        1
+     palm        1      594      110        0
+    peace        9       86      608        2
+  nothing        0        0        0        0
+[cross-session train B -> test A] accuracy 0.862 (1679/1947)
+true\pred     fist     palm    peace  nothing
+     fist      438       11        6        0
+     palm       14      772       85        0
+    peace        5      147      469        0
+  nothing        0        0        0        0
+
+gesture weight shift 10 (card rows keep FC_WEIGHT_SHIFT 7)
+max |weight| int8 = 125, bias range -686..2003
+worst-case |accumulator| = 24392753 (must be < 2^31 = 2147483648)
