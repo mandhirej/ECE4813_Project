@@ -39,4 +39,7 @@ arm coming in from the bottom edge, fingers up:
 | Peace | J (use own joker) |
 | Palm | Q (cancel / main menu / back to keyboard) |
 
+To kill any port, use this command
+netstat -ano | findstr 3010
+taskkill /PID <Port number> /F
 See [`docs/GESTURE.md`](docs/GESTURE.md) for the full description.
