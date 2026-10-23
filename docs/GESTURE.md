@@ -180,8 +180,9 @@ correct for a hand from the top, this one 70-88%).
 | `vision_core.h` | `snapshot_window()`; detects IP V2 at start-up and prints `high-resolution DRAW ON/OFF` | Arm DS |
 | `board_core.h` | `board_hires_refine()` / `board_hires_crop()`: the DRAW card is re-cropped from a 2x-resolution window, each 64x64 pixel the average of 4x4 samples (like the training crops); falls back to the normal crop if the window fails | Arm DS |
 | `game_config.h`, `game_core.h`, `atlas_main.c` | **`fixed_deck_enable`** (1 = fixed deck: off-suit cards corrected to the deck card of the same rank and colour, wrong-rank cards rejected with `WRONG RANK CARD`; 0 = no fixed deck, any card taken as the CNN reads it) and **`seven_to_eight_enable`** (CNN 7 counted as 8, fixed deck only). Checked with `gesture_work/sim/game/test_deck.c` (19/19 pass) | Arm DS |
+| `atlas_main.c` | After a refused DRAW card (already on the board, column full, rank not in deck) the DRAW slot is **scanned again automatically** (no need to take the card out) and the reason is shown (`LAST: 7H ALREADY ON BOARD`) | Arm DS |
 
-Backups of the previous versions: `*.before_deck`, `*.before_hires`, `*.before_window` (snapshot IP), `*.before_draw`, `*.before_switch`, `*.before_oppjoker`, `*.before_swap`, `*.before_layout`, `*.before_gesture`.
+Backups of the previous versions: `*.before_noremap`, `*.before_dupremap`, `*.before_keepscan`, `*.before_remap` (remaps tried and removed), `*.before_rescan` (rescan tried and removed), `*.before_deck`, `*.before_hires`, `*.before_window` (snapshot IP), `*.before_draw`, `*.before_switch`, `*.before_oppjoker`, `*.before_swap`, `*.before_layout`, `*.before_gesture`.
 
 ## Retraining
 

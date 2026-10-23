@@ -35,6 +35,11 @@ Default in the repo: `fixed_deck_enable = 0` (no fixed deck), `seven_to_eight_en
 Both are global variables, so they can also be changed in the Arm DS Variables view
 before starting a game (not during one).
 
+## Refused DRAW card
+
+If a recognised DRAW card is refused (already on the board, column full, rank not in the deck),
+the console and HDMI show the reason and DRAW is scanned again automatically.
+
 ## Console commands (main menu)
 
 `G` new game, `A` camera/board status (after leaving a game: **continue it**), `H` hand gestures (or flip SW0 up),

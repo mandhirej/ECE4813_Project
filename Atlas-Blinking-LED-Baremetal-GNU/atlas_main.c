@@ -927,13 +927,25 @@ static int wait_for_draw_card(int need_empty_first)
     }
 }
 
+/* Why game_build_insert refused a recognised DRAW card (HDMI-sized text). */
+static const char *draw_reject_reason(uint8_t cls)
+{
+    int col=game_column_for_suit(cnn_class_suit(cls));
+    if(game_card_already_placed(cls))return "ALREADY ON BOARD";
+    if(col>=0&&game_column_count((unsigned)col)>=4u)return "COLUMN FULL";
+    if(fixed_deck_enable)return "NOT IN DECK";
+    return "NOT A NORMAL CARD";
+}
+
 static int normal_draw_turn(void)
 {
     int need_empty=0,rec;
     uint8_t cls,target;uint16_t pmask;char c[4];VerifyReport report;
+    char last_reject[29]="";   /* shown while DRAW is scanned again after a rejected card */
     for(;;) {
         if(!fpga_set_draw_guide(GUIDE_CLEAR)||!fpga_sync_board(UI_PLACE_DRAW,0))fatal_fpga_link();
-        hdmi_instructions("YOUR TURN", "STEP 2: DRAW A CARD", "PUT CARD IN DRAW SLOT", "SCANNING DRAW SLOT...", "");
+        hdmi_instructions("YOUR TURN", "STEP 2: DRAW A CARD", "PUT CARD IN DRAW SLOT", "SCANNING DRAW SLOT...", last_reject);
+        last_reject[0]=0;
         hdmi_log("WAITING FOR DRAW CARD");
         puts("Put the drawn card in DRAW: it is recognised automatically (no command needed).");
         if(!wait_for_draw_card(need_empty))return 0;
@@ -942,10 +954,10 @@ static int normal_draw_turn(void)
         rec=recognize_draw_card(&cls);
         if(rec<0) {
             if(our_deadline_expired())return 0;
-            hdmi_instructions("YOUR TURN", "WRONG RANK CARD", "NOT IN THE DECK", "TAKE IT OUT OF DRAW", "");
             if(!fpga_sync_board(UI_RETRY,0))fatal_fpga_link();
-            puts("Wrong-rank card: take it out of DRAW and put a deck card in.");
-            need_empty=1;
+            puts("Wrong-rank card (not in the deck): scanning DRAW again; swap the card if it really is that rank.");
+            hdmi_log("WRONG RANK: SCANNING AGAIN");
+            strcpy(last_reject,"LAST: RANK NOT IN DECK");
             continue;
         }
         if(!rec) {
@@ -957,11 +969,13 @@ static int normal_draw_turn(void)
         }
         if(our_deadline_expired())return 0;
         if(!game_build_insert(cls,pending_classes,&pmask,&target)) {
-            puts("Recognized card is not a legal remaining configured card (recognition error or duplicate). Take it out of DRAW and put the drawn card back.");
-            hdmi_instructions("YOUR TURN", "INVALID OR USED CARD", "TAKE IT OUT OF DRAW", "THEN PUT A CARD BACK", "");
-            hdmi_log("INVALID OR DUPLICATE");
+            const char *why=draw_reject_reason(cls);char card[5];
+            short_card(cls,card);
+            printf("Recognised card refused: ");print_card(cls);
+            printf(" - %s. Scanning DRAW again (adjust or swap the card if needed).\n",why);
+            hdmi_log("CARD REFUSED: SCANNING AGAIN");
+            snprintf(last_reject,sizeof(last_reject),"LAST: %s %s",card,why);
             if(!fpga_sync_board(UI_RETRY,0))fatal_fpga_link();
-            need_empty=1;
             continue;
         }
         pending_mask=pmask;pending_new_class=cls;pending_target=target;pending_active=1;
