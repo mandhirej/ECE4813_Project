@@ -116,7 +116,7 @@ GND                          : AA9       : gnd    :                   :         
 VCCPD3A                      : AA10      : power  :                   : 3.3V    : 3A        :                
 HPS_USB_DATA[3]              : AA11      : bidir  : 3.3-V LVTTL       :         : 3A        : N              
 VCCIO3B                      : AA12      : power  :                   : 3.3V    : 3B        :                
-HPS_USB_STP                  : AA13      : output : 3.3-V LVTTL       :         : 4A        : N              
+HPS_CONV_USB_N               : AA13      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 VCCPD3B4A                    : AA14      : power  :                   : 3.3V    : 3B, 4A    :                
 HPS_I2C0_SDAT                : AA15      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 VCCIO4A                      : AA16      : power  :                   : 3.3V    : 4A        :                
@@ -128,7 +128,7 @@ VCCA_FPLL                    : AA21      : power  :                   : 2.5V    
 LED[7]                       : AA23      : output : 3.3-V LVTTL       :         : 5A        : Y              
 LED[1]                       : AA24      : output : 3.3-V LVTTL       :         : 5A        : Y              
 VREFB5BN0                    : AA25      : power  :                   :         : 5B        :                
-HPS_USB_DIR                  : AA26      : input  : 3.3-V LVTTL       :         : 5B        : N              
+HPS_USB_DATA[0]              : AA26      : bidir  : 3.3-V LVTTL       :         : 5B        : N              
 HPS_DDR3_DQ[31]              : AA27      : bidir  : SSTL-15 Class I   :         : 6B        : N              
 HPS_DDR3_DQ[26]              : AA28      : bidir  : SSTL-15 Class I   :         : 6B        : N              
 GND                          : AB1       : gnd    :                   :         :           :                
@@ -152,9 +152,9 @@ AS_DATA1, DATA1              : AC6       :        :                   :         
 altera_reserved_tms          : AC7       : input  : 3.3-V LVTTL       :         : 3A        : N              
 VCC_AUX                      : AC8       : power  :                   : 2.5V    :           :                
 VCC_AUX                      : AC21      : power  :                   : 2.5V    :           :                
-HPS_KEY                      : AC22      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_DATA[6]              : AC22      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 MIPI_PIXEL_VS                : AC23      : input  : 3.3-V LVTTL       :         : 4A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AC24      :        :                   :         : 5A        :                
+HPS_ENET_RX_DATA[0]          : AC24      : input  : 3.3-V LVTTL       :         : 5A        : N              
 VCCIO5A                      : AC25      : power  :                   : 3.3V    : 5A        :                
 VREFB5AN0                    : AC26      : power  :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC27      :        :                   :         : 6B        :                
@@ -175,16 +175,16 @@ VCCPD3B4A                    : AD13      : power  :                   : 3.3V    
 GND                          : AD14      : gnd    :                   :         :           :                
 VCC_AUX                      : AD15      : power  :                   : 2.5V    :           :                
 VCCPD3B4A                    : AD16      : power  :                   : 3.3V    : 3B, 4A    :                
-HPS_SPIM_MISO                : AD17      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_RX_DATA[2]          : AD17      : input  : 3.3-V LVTTL       :         : 4A        : N              
 VCCPD3B4A                    : AD18      : power  :                   : 3.3V    : 3B, 4A    :                
 HDMI_TX_DE                   : AD19      : output : 3.3-V LVTTL       :         : 4A        : Y              
-HPS_ENET_TX_DATA[1]          : AD20      : output : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_DIR                  : AD20      : input  : 3.3-V LVTTL       :         : 4A        : N              
 VCCPD3B4A                    : AD21      : power  :                   : 3.3V    : 3B, 4A    :                
 GND                          : AD22      : gnd    :                   :         :           :                
 HPS_ENET_TX_DATA[2]          : AD23      : output : 3.3-V LVTTL       :         : 4A        : N              
 VCCPGM                       : AD24      : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
 GND                          : AD25      : gnd    :                   :         :           :                
-HPS_ENET_GTX_CLK             : AD26      : output : 3.3-V LVTTL       :         : 5A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AD26      :        :                   :         : 5A        :                
 VCCIO6B_HPS                  : AD27      : power  :                   : 1.5V    : 6B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD28      :        :                   :         : 6B        :                
 GND                          : AE1       : gnd    :                   :         :           :                
@@ -192,7 +192,7 @@ GND                          : AE2       : gnd    :                   :         
 GND                          : AE3       : gnd    :                   :         :           :                
 HDMI_TX_D[16]                : AE4       : output : 3.3-V LVTTL       :         : 3B        : Y              
 VREFB3AN0                    : AE5       : power  :                   :         : 3A        :                
-HPS_GSENSOR_INT              : AE6       : bidir  : 3.3-V LVTTL       :         : 3A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE6       :        :                   :         : 3A        :                
 HDMI_TX_D[12]                : AE7       : output : 3.3-V LVTTL       :         : 3B        : Y              
 HDMI_TX_D[23]                : AE8       : output : 3.3-V LVTTL       :         : 3B        : Y              
 HDMI_TX_D[10]                : AE9       : output : 3.3-V LVTTL       :         : 3B        : Y              
@@ -203,15 +203,15 @@ VCCIO3B                      : AE13      : power  :                   : 3.3V    
 DNU                          : AE14      :        :                   :         :           :                
 ARDUINO_IO[9]                : AE15      : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : AE16      : gnd    :                   :         :           :                
-HPS_ENET_RX_DATA[2]          : AE17      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_CLKOUT               : AE17      : input  : 3.3-V LVTTL       :         : 4A        : N              
 GND                          : AE18      : gnd    :                   :         :           :                
 HPS_SPIM_MOSI                : AE19      : output : 3.3-V LVTTL       :         : 4A        : N              
 HPS_ENET_RX_DV               : AE20      : input  : 3.3-V LVTTL       :         : 4A        : N              
 VCCIO4A                      : AE21      : power  :                   : 3.3V    : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE22      :        :                   :         : 4A        :                
+HPS_USB_DATA[4]              : AE22      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 MIPI_PIXEL_D[9]              : AE23      : input  : 3.3-V LVTTL       :         : 4A        : Y              
-HPS_CONV_USB_N               : AE24      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_ENET_RX_CLK              : AE25      : input  : 3.3-V LVTTL       :         : 5A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE24      :        :                   :         : 4A        :                
+HPS_USB_DATA[2]              : AE25      : bidir  : 3.3-V LVTTL       :         : 5A        : N              
 LED[5]                       : AE26      : output : 3.3-V LVTTL       :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE27      :        :                   :         : 6B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE28      :        :                   :         : 6B        :                
@@ -234,15 +234,15 @@ VREFB4AN0                    : AF16      : power  :                   :         
 ARDUINO_IO[8]                : AF17      : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF18      :        :                   :         : 4A        :                
 VCCIO4A                      : AF19      : power  :                   : 3.3V    : 4A        :                
-HPS_I2C1_SCLK                : AF20      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_SPIM_SS                  : AF21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_ENET_RX_DATA[1]          : AF22      : input  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_USB_NXT                  : AF23      : input  : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF20      :        :                   :         : 4A        :                
+HPS_ENET_MDIO                : AF21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_I2C1_SCLK                : AF22      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF23      :        :                   :         : 4A        :                
 GND                          : AF24      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF25      :        :                   :         : 4A        :                
+HPS_SPIM_MISO                : AF25      : input  : 3.3-V LVTTL       :         : 4A        : N              
 LED[4]                       : AF26      : output : 3.3-V LVTTL       :         : 5A        : Y              
-HPS_ENET_MDC                 : AF27      : output : 3.3-V LVTTL       :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF28      :        :                   :         : 4A        :                
+HPS_KEY                      : AF27      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_RX_DATA[3]          : AF28      : input  : 3.3-V LVTTL       :         : 4A        : N              
 GND                          : AG1       : gnd    :                   :         :           :                
 GND                          : AG2       : gnd    :                   :         :           :                
 GND                          : AG3       : gnd    :                   :         :           :                
@@ -257,20 +257,20 @@ ARDUINO_IO[15]               : AG11      : bidir  : 3.3-V LVTTL       :         
 VCCIO4A                      : AG12      : power  :                   : 3.3V    : 4A        :                
 ARDUINO_IO[0]                : AG13      : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 MIPI_PIXEL_D[8]              : AG14      : input  : 3.3-V LVTTL       :         : 4A        : Y              
-HPS_ENET_TX_DATA[3]          : AG15      : output : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_TX_EN               : AG15      : output : 3.3-V LVTTL       :         : 4A        : N              
 ARDUINO_IO[11]               : AG16      : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : AG17      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG18      :        :                   :         : 4A        :                
-HPS_LTC_GPIO                 : AG19      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_ENET_TX_EN               : AG20      : output : 3.3-V LVTTL       :         : 4A        : N              
-HPS_ENET_MDIO                : AG21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_RX_CLK              : AG18      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_RX_DATA[1]          : AG19      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_NXT                  : AG20      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_SPIM_SS                  : AG21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 VCCIO4A                      : AG22      : power  :                   : 3.3V    : 4A        :                
-HPS_I2C0_SCLK                : AG23      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AG23      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG24      :        :                   :         : 4A        :                
-HPS_USB_DATA[6]              : AG25      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_GSENSOR_INT              : AG25      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG26      :        :                   :         : 4A        :                
 GND                          : AG27      : gnd    :                   :         :           :                
-HPS_ENET_RX_DATA[0]          : AG28      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_MDC                 : AG28      : output : 3.3-V LVTTL       :         : 4A        : N              
 HDMI_TX_D[17]                : AH2       : output : 3.3-V LVTTL       :         : 3B        : Y              
 MIPI_PIXEL_D[6]              : AH3       : input  : 3.3-V LVTTL       :         : 3B        : Y              
 HDMI_TX_D[18]                : AH4       : output : 3.3-V LVTTL       :         : 3B        : Y              
@@ -287,16 +287,16 @@ MIPI_PIXEL_D[4]              : AH14      : input  : 3.3-V LVTTL       :         
 VCCIO4A                      : AH15      : power  :                   : 3.3V    : 4A        :                
 KEY[1]                       : AH16      : input  : 3.3-V LVTTL       :         : 4A        : Y              
 KEY[0]                       : AH17      : input  : 3.3-V LVTTL       :         : 4A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH18      :        :                   :         : 4A        :                
-HPS_USB_DATA[4]              : AH19      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_TX_DATA[3]          : AH18      : output : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_TX_DATA[1]          : AH19      : output : 3.3-V LVTTL       :         : 4A        : N              
 GND                          : AH20      : gnd    :                   :         :           :                
-HPS_USB_DATA[0]              : AH21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH22      :        :                   :         : 4A        :                
-HPS_USB_DATA[7]              : AH23      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_USB_CLKOUT               : AH24      : input  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_DATA[7]              : AH21      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_ENET_GTX_CLK             : AH22      : output : 3.3-V LVTTL       :         : 4A        : N              
+HPS_I2C0_SCLK                : AH23      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+HPS_USB_STP                  : AH24      : output : 3.3-V LVTTL       :         : 4A        : N              
 VCCIO4A                      : AH25      : power  :                   : 3.3V    : 4A        :                
-HPS_ENET_RX_DATA[3]          : AH26      : input  : 3.3-V LVTTL       :         : 4A        : N              
-HPS_USB_DATA[5]              : AH27      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AH26      :        :                   :         : 4A        :                
+HPS_LTC_GPIO                 : AH27      : bidir  : 3.3-V LVTTL       :         : 4A        : N              
 RREF                         : B1        :        :                   :         :           :                
 DNU                          : B2        :        :                   :         :           :                
 GND                          : B3        : gnd    :                   :         :           :                
@@ -364,7 +364,7 @@ MIPI_PIXEL_D[1]              : D8        : input  : 3.3-V LVTTL       :         
 VREFB8AN0                    : D9        : power  :                   :         : 8A        :                
 GND                          : D10       : gnd    :                   :         :           :                
 MIPI_PIXEL_D[0]              : D11       : input  : 3.3-V LVTTL       :         : 8A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : D12       :        :                   :         : 8A        :                
+HPS_I2C1_SDAT                : D12       : bidir  : 3.3-V LVTTL       :         : 8A        : N              
 GND                          : D13       : gnd    :                   :         :           :                
 HPS_SD_CMD                   : D14       : bidir  : 3.3-V LVTTL       :         : 7C        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : D15       :        :                   :         : 7B        :                
@@ -688,7 +688,7 @@ GND                          : V8        : gnd    :                   :         
 GND                          : V9        : gnd    :                   :         :           :                
 ADC_SCK                      : V10       : output : 3.3-V LVTTL       :         : 3A        : Y              
 FPGA_CLK1_50                 : V11       : input  : 3.3-V LVTTL       :         : 3B        : Y              
-HPS_USB_DATA[2]              : V12       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
+HPS_USB_DATA[5]              : V12       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
 HDMI_TX_VS                   : V13       : output : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : V14       : gnd    :                   :         :           :                
 LED[3]                       : V15       : output : 3.3-V LVTTL       :         : 5A        : Y              
@@ -735,11 +735,11 @@ HDMI_TX_D[7]                 : Y5        : output : 3.3-V LVTTL       :         
 HDMI_TX_D[3]                 : Y8        : output : 3.3-V LVTTL       :         : 3A        : Y              
 altera_reserved_tdo          : Y9        : output : 3.3-V LVTTL       :         : 3A        : N              
 VCCPGM                       : Y10       : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
-HPS_I2C1_SDAT                : Y11       : bidir  : 3.3-V LVTTL       :         : 3A        : N              
+HPS_ENET_INT_N               : Y11       : bidir  : 3.3-V LVTTL       :         : 3A        : N              
 GND                          : Y12       : gnd    :                   :         :           :                
 FPGA_CLK2_50                 : Y13       : input  : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : Y14       : gnd    :                   :         :           :                
-HPS_ENET_INT_N               : Y15       : bidir  : 3.3-V LVTTL       :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : Y15       :        :                   :         : 4A        :                
 LED[6]                       : Y16       : output : 3.3-V LVTTL       :         : 5A        : Y              
 HPS_USB_DATA[1]              : Y17       : bidir  : 3.3-V LVTTL       :         : 5A        : N              
 MIPI_MCLK                    : Y18       : output : 3.3-V LVTTL       :         : 5A        : Y              

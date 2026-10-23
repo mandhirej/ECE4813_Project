@@ -1,12 +1,12 @@
-Fitter Status : Successful - Thu Oct 22 19:00:39 2026
+Fitter Status : Successful - Fri Oct 23 01:01:55 2026
 Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 Revision Name : DE10_Nano_D8M_DDR3
 Top-level Entity Name : DE10_Nano_D8M_DDR3
 Family : Cyclone V
 Device : 5CSEBA6U23I7
 Timing Models : Final
-Logic utilization (in ALMs) : 19,965 / 41,910 ( 48 % )
-Total registers : 23911
+Logic utilization (in ALMs) : 19,910 / 41,910 ( 48 % )
+Total registers : 23766
 Total pins : 215 / 314 ( 68 % )
 Total virtual pins : 0
 Total block memory bits : 3,838,350 / 5,662,720 ( 68 % )

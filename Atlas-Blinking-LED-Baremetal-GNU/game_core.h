@@ -75,7 +75,7 @@ static int game_config_index_for_class(uint8_t cls)
 static uint8_t game_vote_rank(uint8_t observed_rank)
 {
     unsigned col,k; int seven_present=0,eight_present=0;
-    if(observed_rank!=7u)return observed_rank;
+    if(observed_rank!=7u||!fixed_deck_enable||!seven_to_eight_enable)return observed_rank;
     for(col=0;col<4u;col++)for(k=0;k<4u;k++) {
         if(game_deck_ranks[col][k]==7u)seven_present=1;
         if(game_deck_ranks[col][k]==8u)eight_present=1;
@@ -83,9 +83,18 @@ static uint8_t game_vote_rank(uint8_t observed_rank)
     return (uint8_t)((!seven_present&&eight_present)?8u:observed_rank);
 }
 
+/* Fixed deck only: is this rank anywhere in game_deck_ranks? */
+static int game_rank_in_deck(uint8_t rank)
+{
+    unsigned c,k;
+    for(c=0;c<4;c++)for(k=0;k<4;k++)if(game_deck_ranks[c][k]==rank)return 1;
+    return 0;
+}
+
 static int game_config_validate(void)
 {
     unsigned c,i,j; uint8_t cls;
+    if(!fixed_deck_enable)return 1;   /* no fixed deck to check */
     for(c=0;c<4;c++)for(i=0;i<4;i++) {
         uint8_t r=game_deck_ranks[c][i];
         if(r<1u||r>13u||!class_from_rank_suit(r,game_column_suit[c],&cls))return 0;
@@ -107,13 +116,19 @@ static void game_reset_state(void)
 static unsigned game_placed_count(void)
 {
     unsigned i,n=0;
-    for(i=0;i<16;i++)if(game_placed_config_mask&(1u<<i))n++;
+    uint16_t m=fixed_deck_enable?game_placed_config_mask:game_occupied_mask;
+    for(i=0;i<16;i++)if(m&(1u<<i))n++;
     return n;
 }
 
 static int game_card_already_placed(uint8_t cls)
 {
-    int idx=game_config_index_for_class(cls);
+    int idx;unsigned i;
+    if(!fixed_deck_enable) {
+        for(i=0;i<16;i++)if((game_occupied_mask&(1u<<i))&&game_board_class[i]==cls)return 1;
+        return 0;
+    }
+    idx=game_config_index_for_class(cls);
     return idx>=0 && (game_placed_config_mask&(1u<<idx));
 }
 
@@ -169,7 +184,8 @@ static int game_build_insert(uint8_t new_class,uint8_t out_classes[16],uint16_t 
 {
     int cfg=game_config_index_for_class(new_class),col;
     uint8_t list[5],tmp; unsigned n=0,r,i,j,target=255;
-    if(cfg<0||game_card_already_placed(new_class))return 0;
+    if(fixed_deck_enable?cfg<0:(cnn_class_rank(new_class)<1u||cnn_class_rank(new_class)>13u))return 0;
+    if(game_card_already_placed(new_class))return 0;
     col=game_column_for_suit(cnn_class_suit(new_class)); if(col<0)return 0;
     memcpy(out_classes,game_board_class,16); *out_mask=game_occupied_mask;
     for(r=0;r<4;r++) {
@@ -200,9 +216,9 @@ static int game_build_insert(uint8_t new_class,uint8_t out_classes[16],uint16_t 
 static int game_commit_insert(uint8_t new_class,const uint8_t classes[16],uint16_t mask)
 {
     int idx=game_config_index_for_class(new_class);
-    if(idx<0)return 0;
+    if(fixed_deck_enable&&idx<0)return 0;
     memcpy(game_board_class,classes,16); game_occupied_mask=mask;
-    game_placed_config_mask|=(uint16_t)(1u<<idx);
+    if(fixed_deck_enable)game_placed_config_mask|=(uint16_t)(1u<<idx);
     return 1;
 }
 

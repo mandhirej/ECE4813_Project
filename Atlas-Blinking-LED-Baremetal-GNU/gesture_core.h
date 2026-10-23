@@ -27,6 +27,8 @@
 #define GESTURE_MIN_SPAN 48u            /* same as MIN_SPAN in the Python preprocessing */
 #define GESTURE_FIRST_CLASS 54u
 #define GESTURE_HOLD_TICKS 150000000u   /* 3 s of the bridge's 50 MHz tick counter */
+#define GESTURE_PALM_HOLD_TICKS 150000000u  /* PALM (cancel/quit): 3 s like the others ... */
+#define GESTURE_PALM_AGREE_PCT 75u          /* ... but 75% of the last 3 s (PEACE misread as PALM must not quit) */
 #define GESTURE_AGREE_PCT 60u           /* share of the readings in the last 3 s; an
                                            unclear PEACE read 47% PALM must not fire */
 #define GESTURE_WINDOW 128u             /* >= readings in 3 s (one every ~50 ms) */
@@ -78,7 +80,7 @@ static int input_set_mode(int gestures)
 {
     if(gestures==gesture_input)return 0;
     gesture_set_input(gestures);
-    if(gestures){puts("Hand-gesture input ON (FIST=ENTER, PEACE=J, PALM=Q).");gesture_show_last();}
+    if(gestures){puts("Hand-gesture input ON (PEACE=ENTER, FIST=J, PALM=Q).");gesture_show_last();}
     else {puts("Keyboard input (type H or flip SW0 up for hand gestures).");hdmi_line(6u,"");hdmi_line(7u,"INPUT: KEYBOARD");}
     return 1;
 }
@@ -174,19 +176,24 @@ static void gesture_status(const char *msg){hdmi_line(7u,msg);}
 static unsigned gesture_last=GESTURE_NOTHING;
 static void gesture_show_last(void)
 {
-    static const char *const action[4]={"ENTER","Q","J",""};
+    static const char *const action[4]={"J","Q","ENTER",""};   /* FIST, PALM, PEACE */
     char msg[29];
     if(gesture_last>=GESTURE_NOTHING)snprintf(msg,sizeof(msg),"LAST HAND: -");
     else snprintf(msg,sizeof(msg),"LAST HAND: %s = %s",gesture_names[gesture_last],action[gesture_last]);
     hdmi_line(6u,msg);
 }
 
+/* PALM (= Q: cancel / quit) is the gesture most often confused with PEACE (= ENTER),
+ * so it needs a higher share of agreeing readings before it fires (same 3 s hold). */
+static uint32_t gesture_hold_ticks(unsigned g){return g==GESTURE_PALM?GESTURE_PALM_HOLD_TICKS:GESTURE_HOLD_TICKS;}
+static unsigned gesture_agree_pct(unsigned g){return g==GESTURE_PALM?GESTURE_PALM_AGREE_PCT:GESTURE_AGREE_PCT;}
+
 static void gesture_show_progress(unsigned g,uint32_t held)
 {
     char msg[40];
-    unsigned tenths=(unsigned)(held/5000000u);
-    if(tenths>30u)tenths=30u;
-    snprintf(msg,sizeof(msg),"HAND: %s %u.%u/3.0 S",gesture_names[g],tenths/10u,tenths%10u);
+    unsigned tenths=(unsigned)(held/5000000u),need=(unsigned)(gesture_hold_ticks(g)/5000000u);
+    if(tenths>need)tenths=need;
+    snprintf(msg,sizeof(msg),"HAND: %s %u.%u/%u.%u S",gesture_names[g],tenths/10u,tenths%10u,need/10u,need%10u);
     gesture_status(msg);
 }
 
@@ -254,7 +261,7 @@ static unsigned gesture_wait_command(int (*stop)(void))
             uint32_t held=now-lead_since;
             unsigned half=(unsigned)(held/25000000u);          /* 0.5 s steps */
             if(half!=shown_half){gesture_show_progress(lead,held);shown_half=half;}
-            if(held>=GESTURE_HOLD_TICKS && n[lead]*100u>GESTURE_AGREE_PCT*count) {
+            if(held>=gesture_hold_ticks(lead) && n[lead]*100u>gesture_agree_pct(lead)*count) {
                 char msg[32];
                 snprintf(msg,sizeof(msg),"HAND COMMAND: %s",gesture_names[lead]);
                 gesture_status(msg);
@@ -309,14 +316,13 @@ static void gesture_capture_menu(void)
 }
 
 /* Keyboard-equivalent of a gesture for the existing prompts:
- *   FIST  = ENTER (confirm / draw / check; "1" on the who-starts screen)
- *   PEACE = J     (use own joker;          "2" on the who-starts screen)
+ *   PEACE = ENTER (confirm / draw / check; "1" on the who-starts screen)
+ *   FIST  = J     (use own joker;          "2" on the who-starts screen)
  *   PALM  = Q     (cancel / menu)
- * The most used command (ENTER) is on FIST, the most distinct gesture: in the game
- * simulation FIST read 100% correct, while PALM and PEACE are sometimes confused. */
+ * The most used command (ENTER) is on PEACE, which read most reliably on the board. */
 static char gesture_key(unsigned g)
 {
-    return g==GESTURE_FIST?'\n':g==GESTURE_PEACE?'J':g==GESTURE_PALM?'Q':0;
+    return g==GESTURE_PEACE?'\n':g==GESTURE_FIST?'J':g==GESTURE_PALM?'Q':0;
 }
 
 #endif /* GESTURE_CORE_H */

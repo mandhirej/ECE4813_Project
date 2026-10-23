@@ -347,6 +347,7 @@ static int fpga_sync_board(uint8_t action,uint8_t target)
 static void timeout_turn_cleanup(void)
 {
     pending_active=0;
+    game_round++;                 /* a timed-out turn still counts as a round */
     fpga_clear_placement();
     finish_our_turn_timer();
     if(!fpga_sync_board(UI_READY,0))fatal_fpga_link();
@@ -363,8 +364,8 @@ static void take_snapshot(void){if(snapshot_frame()<0)stop_hardware();}
 
 #include "gesture_core.h"
 
-/* Hand-gesture input: a 3 s gesture replaces the typed line (FIST = ENTER,
- * PEACE = J, PALM = Q, see gesture_key). Typing H or flipping SW0 up switches to
+/* Hand-gesture input: a 3 s gesture replaces the typed line (PEACE = ENTER,
+ * FIST = J, PALM = Q, see gesture_key). Typing H or flipping SW0 up switches to
  * gestures, flipping SW0 down switches back; this works at every prompt, also in
  * the middle of a game. The console read blocks the CPU, so after flipping SW0 up
  * the player presses ENTER once; that line only hands over and is not a command. */
@@ -411,7 +412,7 @@ static int wait_enter_or_q(void)
 /* Opponent turn: 1 = start our turn, 0 = back to the menu.
  *   keyboard: ENTER starts our turn (early, or after the time is up); there is no
  *             automatic switch, because the Arm DS console read blocks the CPU.
- *   gestures: FIST starts our turn early; when the opponent's 120 s end our turn
+ *   gestures: PEACE starts our turn early; when the opponent's 120 s end our turn
  *             starts by itself; PALM = menu.
  * H or a SW0 flip changes the mode during the wait, as at every other prompt. */
 static int wait_opponent_turn(void)
@@ -536,9 +537,11 @@ static int recognize_joker_cell(unsigned cell,uint8_t *which_joker)
     *which_joker=(redj>blackj)?45u:44u;return 1;
 }
 
-/* Constrained decoder after rank-first votes. It uses only configured, not-yet
- * placed cards. RGB red/black evidence resolves the initial D/S A..4 pairs;
- * raw CNN suit votes are a secondary tie-breaker for future deck configs. */
+/* Decoder after rank-first votes. Returns 1 = card decoded, 0 = not sure yet
+ * (gather more votes / retry), -1 = rejected (fixed deck: rank not in deck).
+ * fixed_deck_enable = 1: uses only configured, not-yet placed cards; RGB and
+ *   CNN red/black evidence picks the deck card of that rank and colour.
+ * fixed_deck_enable = 0: the CNN rank and suit majorities, no correction. */
 static int decode_draw_evidence(const DrawEvidence *e,uint8_t *decoded)
 {
     unsigned rank_votes[14]={0},i,best=1,bestv=0,second=0;
@@ -551,6 +554,14 @@ static int decode_draw_evidence(const DrawEvidence *e,uint8_t *decoded)
     }
     for(i=1;i<=13;i++)if(rank_votes[i]>bestv){second=bestv;bestv=rank_votes[i];best=i;}else if(rank_votes[i]>second)second=rank_votes[i];
     if(bestv<((e->count/2u)+1u)||bestv==second)return 0;
+    if(!fixed_deck_enable) {
+        unsigned sv[4]={0},s,bs=0,b1=0,b2=0;
+        for(i=0;i<e->count;i++)if(e->rank[i]==best&&(s=cnn_class_suit(e->raw_class[i]))<4u)sv[s]++;
+        for(s=0;s<4u;s++)if(sv[s]>b1){b2=b1;b1=sv[s];bs=s;}else if(sv[s]>b2)b2=sv[s];
+        if(b1*2u<=bestv||b1==b2)return 0;
+        return class_from_rank_suit((uint8_t)best,(uint8_t)bs,decoded);
+    }
+    if(!game_rank_in_deck((uint8_t)best))return -1;
     n=game_remaining_candidates_for_rank((uint8_t)best,candidates);
     if(n==0u)return 0;
     if(n==1u){*decoded=candidates[0];return 1;}
@@ -610,9 +621,10 @@ static int decode_draw_evidence(const DrawEvidence *e,uint8_t *decoded)
 }
 
 static void short_card(uint8_t cls,char out[5]);
+/* 1 = recognised, 0 = retry, -1 = rejected (rank not in the fixed deck). */
 static int recognize_draw_card(uint8_t *decoded)
 {
-    DrawEvidence e;unsigned attempts=0;memset(&e,0,sizeof(e));vision_verbose=0;hdmi_log("DRAW SCAN STARTED");
+    DrawEvidence e;unsigned attempts=0;int d;memset(&e,0,sizeof(e));vision_verbose=0;hdmi_log("DRAW SCAN STARTED");
     while(e.count<DRAW_MAX_VOTES&&attempts<DRAW_MAX_ATTEMPTS) {
         uint8_t pred;unsigned red=0;attempts++;
         if(!fresh_cell_crop(BOARD_DRAW_CELL,&red)) {
@@ -633,10 +645,16 @@ static int recognize_draw_card(uint8_t *decoded)
             snprintf(summary,sizeof(summary),"DRAW SCAN %u/%u",e.count,DRAW_MAX_VOTES);
             hdmi_log(summary);
         }
-        if(e.count==DRAW_MIN_VOTES&&decode_draw_evidence(&e,decoded))break;
+        if(e.count==DRAW_MIN_VOTES&&decode_draw_evidence(&e,decoded)!=0)break;
     }
     vision_verbose=1;
-    if(!decode_draw_evidence(&e,decoded)) {
+    d=decode_draw_evidence(&e,decoded);
+    if(d<0) {
+        puts("DRAW REJECTED: the card's rank is not in the fixed deck (game_config.h).");
+        hdmi_log("WRONG RANK: NOT IN DECK");
+        return -1;
+    }
+    if(d==0) {
         puts("DRAW RECOGNITION RETRY: constrained deck decoder could not get a unique legal card.");hdmi_log("DRAW SCAN: RETRY NEEDED");
         return 0;
     }
@@ -911,7 +929,7 @@ static int wait_for_draw_card(int need_empty_first)
 
 static int normal_draw_turn(void)
 {
-    int need_empty=0;
+    int need_empty=0,rec;
     uint8_t cls,target;uint16_t pmask;char c[4];VerifyReport report;
     for(;;) {
         if(!fpga_set_draw_guide(GUIDE_CLEAR)||!fpga_sync_board(UI_PLACE_DRAW,0))fatal_fpga_link();
@@ -921,7 +939,16 @@ static int normal_draw_turn(void)
         if(!wait_for_draw_card(need_empty))return 0;
         need_empty=0;
         hdmi_instructions("YOUR TURN", "STEP 2: DRAW A CARD", "CARD FOUND IN DRAW", "RECOGNISING...", "");
-        if(!recognize_draw_card(&cls)) {
+        rec=recognize_draw_card(&cls);
+        if(rec<0) {
+            if(our_deadline_expired())return 0;
+            hdmi_instructions("YOUR TURN", "WRONG RANK CARD", "NOT IN THE DECK", "TAKE IT OUT OF DRAW", "");
+            if(!fpga_sync_board(UI_RETRY,0))fatal_fpga_link();
+            puts("Wrong-rank card: take it out of DRAW and put a deck card in.");
+            need_empty=1;
+            continue;
+        }
+        if(!rec) {
             if(our_deadline_expired())return 0;
             if(!fpga_sync_board(UI_RETRY,0))fatal_fpga_link();
             hdmi_instructions("YOUR TURN", "CARD NOT RECOGNISED", "ADJUST THE DRAW CARD", "RETRYING AUTOMATICALLY", "");
@@ -1019,7 +1046,7 @@ static int choose_first_team(int *opponent_first)
 {
     char c;
     /* one text for both input modes, so it stays right if SW0 is flipped here */
-    hdmi_instructions("WHO STARTS?", "1 OR FIST: OUR TEAM", "2 OR PEACE: OPPONENT", "TYPE 1/2 OR HOLD 3 S", "Q: CANCEL GAME");
+    hdmi_instructions("WHO STARTS?", "1 OR PEACE: OUR TEAM", "2 OR FIST: OPPONENT", "TYPE 1/2 OR HOLD 3 S", "Q: CANCEL GAME");
     hdmi_log("WAITING FOR STARTING TEAM");
     puts("Who goes first? Type 1 + ENTER for OUR TEAM, 2 + ENTER for OPPONENT, Q to cancel.");
     for(;;) {
@@ -1032,30 +1059,45 @@ static int choose_first_team(int *opponent_first)
     }
 }
 
-static void game_main(void)
+/* A game left with Q / PALM stays in memory and can be continued from the menu;
+ * it is cleared when a new game starts or when all 16 cards are placed. */
+static int game_paused=0;
+static int wait_opponent=0;      /* whose turn comes next; kept for continuing */
+
+/* resume=0: new game. resume=1: continue the game that was left (same board,
+ * jokers, round and turn order); the turn that was interrupted starts again. */
+static void game_main(int resume)
 {
-    char choice;int wait_opponent=0,our_timer_started=0;
+    char choice;int our_timer_started=0;
     if(!game_config_validate()){puts("FATAL: invalid deck configuration.");return;}
-    game_reset_state();joker_mask=0;opp_joker_seen=0;memset(joker_class,0,sizeof(joker_class));pending_active=0;
+    if(!resume){game_reset_state();joker_mask=0;opp_joker_seen=0;memset(joker_class,0,sizeof(joker_class));}
+    pending_active=0;
     our_timed_input=0;turn_timeout_seen=0;
     game_link_start();
     fpga_timer_command(TIMER_CLEAR);
     if(!fpga_sync_board(UI_READY,0))fatal_fpga_link();
-    if(!choose_first_team(&wait_opponent))return;
+    if(!resume){
+        game_paused=0;wait_opponent=0;
+        if(!choose_first_team(&wait_opponent))return;
+    } else {
+        printf("CONTINUE: previous game, round %u, %u/16 cards placed.\n",game_round,game_placed_count());
+        hdmi_log("PREVIOUS GAME CONTINUED");
+    }
+    game_paused=1;                /* until all 16 cards are placed */
     puts("SUIT STACK RACE: no back learning; columns D/C/H/S sorted top-to-bottom.");
     for(;;) {
         int r;
         printf("\nROUND %u | placed=%u/16 | own jokers=%u\n",game_round,game_placed_count(),game_own_jokers_left);
         if(wait_opponent) {
             // FPGA counts the opponent's 120 seconds. Keyboard: ENTER starts our turn.
-            // Gestures: FIST starts it, or it starts by itself when the time is up.
+            // Gestures: PEACE starts it, or it starts by itself when the time is up.
             fpga_timer_command(TIMER_START_OPPONENT);
             if(!fpga_sync_board(UI_READY,0))fatal_fpga_link();
-            /* ENTER/Q read FIST/PALM in gesture mode; the auto start is gesture-only */
+            /* ENTER/Q read PEACE/PALM in gesture mode; the auto start is gesture-only */
             hdmi_instructions("OPPONENT TURN", "WAIT FOR OPPONENT", "ENTER: START OUR TURN",
-                              "HAND MODE: AUTO AT 0:00", "Q: MAIN MENU");
+                              "", "Q: MAIN MENU");
             hdmi_log("OPPONENT TURN / WAITING");
-            puts(gesture_input?"OPPONENT TURN. FIST starts our turn; it also starts by itself when the 120 s end. PALM = menu."
+            puts(gesture_input?"OPPONENT TURN. PEACE starts our turn; it also starts by itself when the 120 s end. PALM = menu."
                               :"OPPONENT TURN. Press ENTER to start our turn (also after the time is up). Q = menu.");
             if(!wait_opponent_turn()){fpga_timer_command(TIMER_CLEAR);return;}
             if(fpga_timer_expired())puts("OPPONENT TIME EXPIRED: switching to our turn.");
@@ -1100,7 +1142,7 @@ static void game_main(void)
             continue;
         }
         if(game_placed_count()==16u){
-            finish_our_turn_timer();if(!fpga_sync_board(UI_COMPLETE,0))fatal_fpga_link();return;
+            finish_our_turn_timer();if(!fpga_sync_board(UI_COMPLETE,0))fatal_fpga_link();game_paused=0;return;
         }
         if(!fpga_sync_board(UI_READY,0))fatal_fpga_link();
         if(game_own_jokers_left)
@@ -1130,7 +1172,7 @@ static void game_main(void)
         }
         if(r==0)return;
         finish_our_turn_timer();our_timer_started=0;
-        if(r==2)return;
+        if(r==2){game_paused=0;return;}
         wait_opponent=1;
     }
 }
@@ -1150,10 +1192,18 @@ static void one_shot_status(void)
     printf("DRAW: %s\n",p.status[BOARD_DRAW_CELL]==1?"CARD":p.status[BOARD_DRAW_CELL]==2?"AMBIGUOUS":"EMPTY");
 }
 
+/* After a game was left with Q / PALM, "scan camera" becomes "continue game";
+ * in gesture mode PEACE (the usual ENTER gesture) then continues, so a habit
+ * gesture never throws the game away. */
 static void show_main_menu(void)
 {
-    if(gesture_input)hdmi_instructions("SYSTEM MENU","FIST: NEW GAME","PEACE: SCAN CAMERA","HOLD GESTURE FOR 3 S","PALM: KEYBOARD INPUT");
-    else hdmi_instructions("SYSTEM MENU","G: NEW GAME","A: SCAN CAMERA","H: GESTURES  C: CAPTURE","Q: STOP");
+    if(gesture_input) {
+        if(game_paused)hdmi_instructions("SYSTEM MENU","PEACE: CONTINUE GAME","FIST: NEW GAME","HOLD GESTURE FOR 3 S","PALM: KEYBOARD INPUT");
+        else hdmi_instructions("SYSTEM MENU","PEACE: NEW GAME","FIST: SCAN CAMERA","HOLD GESTURE FOR 3 S","PALM: KEYBOARD INPUT");
+    } else {
+        if(game_paused)hdmi_instructions("SYSTEM MENU","G: NEW GAME","A: CONTINUE GAME","H: GESTURES  C: CAPTURE","Q: STOP");
+        else hdmi_instructions("SYSTEM MENU","G: NEW GAME","A: SCAN CAMERA","H: GESTURES  C: CAPTURE","Q: STOP");
+    }
 }
 
 int main(void)
@@ -1163,7 +1213,10 @@ int main(void)
     puts(BOARD_LANDSCAPE_ROTATION==1?
          "Horizontal cards: card TOP points LEFT in camera (clockwise crop correction).":
          "Horizontal cards: card TOP points RIGHT in camera (counterclockwise crop correction).");
-    puts("Deck config is in game_config.h. Initial set: D=A234, C=8/9/10/J, H=8/9/10/J, S=A234.");
+    printf("Deck config is in game_config.h: fixed_deck_enable=%d, seven_to_eight_enable=%d.\n",
+           fixed_deck_enable,seven_to_eight_enable);
+    puts(fixed_deck_enable?"Fixed deck: D=A234, C=8/9/10/J, H=8/9/10/J, S=A234 (off-suit cards corrected by colour, other ranks rejected).":
+         "No fixed deck: any card accepted as the CNN reads it.");
     if(!vision_init())stop_hardware();
     board_init();
     if(!game_config_validate()){puts("STOP: invalid game_config.h deck.");for(;;)__asm volatile("wfi");}
@@ -1175,25 +1228,32 @@ int main(void)
     for(;;) {
         if(input_mode_sync())show_main_menu();
         if(gesture_input) {
-            /* FIST = new game, PEACE = camera scan, PALM = keyboard (or flip SW0 down) */
+            /* no paused game: PEACE = new game, FIST = camera scan
+             * paused game:    PEACE = continue,  FIST = new game;  PALM = keyboard */
             unsigned g;
-            puts("\nHAND GESTURES: FIST=new game; PEACE=camera scan; PALM=keyboard");fflush(stdout);
+            puts(game_paused?"\nHAND GESTURES: PEACE=continue game; FIST=new game; PALM=keyboard"
+                            :"\nHAND GESTURES: PEACE=new game; FIST=camera scan; PALM=keyboard");fflush(stdout);
             g=gesture_wait_command(0);
             if(g==GESTURE_ERROR){gesture_error_lock=1;continue;}
             if(g==GESTURE_PALM){input_set_mode(0);show_main_menu();continue;}
             if(g!=GESTURE_FIST&&g!=GESTURE_PEACE)continue;
-            line[0]=g==GESTURE_FIST?'G':'A';
+            if(game_paused)line[0]=g==GESTURE_PEACE?'A':'G';
+            else line[0]=g==GESTURE_PEACE?'G':'A';
         } else {
-            puts("\nG=new game; A=refresh camera/board status; H=hand gestures (or flip SW0 up); C=capture gesture images; Q=stop");
+            puts(game_paused?"\nG=new game; A=CONTINUE the previous game; H=hand gestures (or flip SW0 up); C=capture gesture images; Q=stop"
+                            :"\nG=new game; A=refresh camera/board status; H=hand gestures (or flip SW0 up); C=capture gesture images; Q=stop");
             fflush(stdout);if(!fgets(line,sizeof(line),stdin))break;
             if(input_mode_sync()){show_main_menu();continue;}   /* SW0 flipped: that line only changed the mode */
             if(line[0]=='Q'||line[0]=='q')break;
         }
         switch(toupper((unsigned char)line[0])) {
-            case 'G':game_main();our_timed_input=0;turn_timeout_seen=0;
+            case 'G':
+            case 'A':
+                     if(toupper((unsigned char)line[0])=='A'&&!game_paused){one_shot_status();break;}
+                     game_main(toupper((unsigned char)line[0])=='A');   /* A = continue */
+                     our_timed_input=0;turn_timeout_seen=0;
                      fpga_timer_command(TIMER_CLEAR);fpga_clear_placement();
                      show_main_menu();break;
-            case 'A':one_shot_status();break;
             case 'H':input_request_gestures();show_main_menu();break;
             case 'C':gesture_capture_menu();show_main_menu();break;
             default:puts("Enter G, A, H, C, or Q.");break;

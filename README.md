@@ -27,6 +27,7 @@ the hand-gesture zone, sends them to the CNN and drives the HDMI text.
    and then `atlas_main.axf`).
 3. At the Arm DS console: `G` new game, `A` camera/board check, `H` (or flip **SW0** up)
    hand gestures, `C` capture gesture images, `Q` stop.
+   After leaving a game with `Q` (or PALM), `A` (or PEACE) **continues** it.
 
 ## Playing with hand gestures
 
@@ -35,8 +36,8 @@ arm coming in from the bottom edge, fingers up:
 
 | Gesture | Acts as |
 |---|---|
-| Fist | ENTER (confirm, draw, check, start our turn) |
-| Peace | J (use own joker) |
+| Peace | ENTER (confirm, draw, check, start our turn) |
+| Fist | J (use own joker) |
 | Palm | Q (cancel / main menu / back to keyboard) |
 
 To kill any port, use this command

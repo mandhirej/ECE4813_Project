@@ -395,6 +395,7 @@ static const char *gesture_label(int g){return g==0?"FIST":g==1?"PALM":g==2?"PEA
 static char player_decide(char *say,size_t say_n)
 {
     int cells[4];
+    if(row_has("SYSTEM MENU")&&row_has("CONTINUE GAME")){snprintf(say,say_n,"continue the game that was left");return gesture_mode_on?'G':'A';}
     if(row_has("SYSTEM MENU")){
         if(games_played>=1){
             if(gesture_mode_on){gesture_mode_on=0;snprintf(say,say_n,"game over: PALM = back to keyboard");return 'Q';}
@@ -420,6 +421,7 @@ static char player_decide(char *say,size_t say_n)
     }
     if(row_has("CHOOSE YOUR ACTION")){
         our_choices++;
+        if(our_choices==3){snprintf(say,say_n,"quits to the menu by mistake");return 'Q';}
         if(our_choices==4&&row_has("PLACE YOUR JOKER")){snprintf(say,say_n,"use our own joker this turn");return 'J';}
         snprintf(say,say_n,"draw a card");return '\n';
     }
@@ -449,7 +451,7 @@ static char player_decide(char *say,size_t say_n)
     return '\n';
 }
 /* FIST = ENTER/1/new game, PEACE = J/2/scan, PALM = Q (gesture_key in gesture_core.h) */
-static int key_to_gesture(char k){return (k=='\n'||k=='1'||k=='G')?0:(k=='J'||k=='2'||k=='A')?2:1;}
+static int key_to_gesture(char k){return (k=='\n'||k=='1'||k=='G')?2:(k=='J'||k=='2'||k=='A')?0:1;}
 
 static void player_on_text_row(unsigned row)
 {

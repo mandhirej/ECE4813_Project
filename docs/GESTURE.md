@@ -6,13 +6,13 @@ on, the whole game can be played without touching the keyboard.
 
 | Gesture (hold 3 s) | Acts as | Who-starts screen | Main menu |
 |---|---|---|---|
-| Fist | ENTER (confirm / draw / check) | our team starts | new game |
-| Peace | J (use own joker) | opponent starts | camera scan |
+| Peace | ENTER (confirm / draw / check / start our turn) | our team starts | new game (after a quit: **continue the game**) |
+| Fist | J (use own joker) | opponent starts | camera scan (after a quit: new game) |
 | Open palm | Q (cancel / back to menu) | cancel game | back to keyboard input |
 
-ENTER, the most used command, is on FIST because fist is the most distinct gesture:
-in the game simulation fist read 100% correct on every photo, while palm and peace
-are sometimes confused with each other.
+ENTER, the most used command, is on PEACE because peace read most reliably on the
+real board camera. PALM (cancel/quit) is the gesture most often confused with peace,
+so it needs 75% of the readings in its 3 s hold (the others: 60%).
 
 **Board layout (fifth column):** DR, the draw slot, is at the **top**, and the three
 cells below it are the **HG** hand-gesture zone (camera x 370..459, y 76..249). Hold
@@ -38,9 +38,9 @@ simulation 32 such reaches triggered nothing.
    until HG has been empty for 0.5 s before it acts, and the zone must show
    "nothing" before the next command is accepted.
 5. HDMI: with gesture input on, every instruction row names the gesture instead of the
-   key (`FIST: DRAW A CARD`, `PEACE: PLACE YOUR JOKER`, `PALM: MAIN MENU`). Debug row
-   5 is the event log, row 6 keeps the last accepted gesture (`LAST HAND: FIST =
-   ENTER`) until the next one, and row 7 shows the live hold (`HAND: FIST 1.5/3.0 S`).
+   key (`PEACE: DRAW A CARD`, `FIST: PLACE YOUR JOKER`, `PALM: MAIN MENU`). Debug row
+   5 is the event log, row 6 keeps the last accepted gesture (`LAST HAND: PEACE =
+   ENTER`) until the next one, and row 7 shows the live hold (`HAND: PEACE 1.5/3.0 S`).
    The legend has an amber HAND entry for the HG box.
 6. Turn timer: our 120 s start when our turn starts (before the joker scan) and run
    without pausing until the turn is verified. With gesture input, when the
@@ -63,7 +63,7 @@ the FC ROM are byte-identical to before. Only 4 gesture rows are appended (ROM d
 | `Atlas-Blinking-LED-Baremetal-GNU/vision_core.h` | `cnn_run_mode(..., gesture, ...)`; `cnn_run` unchanged for cards |
 | `Atlas-Blinking-LED-Baremetal-GNU/gesture_core.h` | **new**: zone crop, preprocessing, 3 s hold, key mapping |
 | `Atlas-Blinking-LED-Baremetal-GNU/atlas_main.c` | `H` in the main menu turns gesture input on; prompts accept gestures |
-| `Atlas-Blinking-LED-Baremetal-GNU/hdmi_text_v16_4.h` | with gesture input on, instruction rows say FIST / PEACE / PALM instead of ENTER / J / Q |
+| `Atlas-Blinking-LED-Baremetal-GNU/hdmi_text_v16_4.h` | with gesture input on, instruction rows say PEACE / FIST / PALM instead of ENTER / J / Q |
 
 DR/HG swap (originals kept as `*.before_swap`): `fixed_board_grid.h` and
 `fixed_board_grid.vh` (`GRID_DRAW_Y0` = top row), `board_core.h` (DRAW row now
@@ -174,11 +174,14 @@ correct for a hand from the top, this one 70-88%).
 | `atlas_main.c` | our 120 s start at the start of our turn (before the joker scan); opponent's 120 s hand over automatically in gesture mode; **DRAW is scanned automatically** after "draw a card" (reminder until a card is there, auto retry); **deck colour rule** for the drawn card (e.g. 2S read as 2C still gives 2S); opponent jokers counted (2 at start), joker scan skipped when the opponent has none left | Arm DS |
 | `game_config.h` | `GAME_OPP_JOKERS 2u` | Arm DS |
 | `game_core.h` | `game_opp_jokers_left` | Arm DS |
+| `DE10_Nano_D8M_DDR3.v` | status row `MY JKR  OP JKR  [card] LEFT  ROUND`: small card icon, each number centred under its label (the old value line was 29 characters in a 28-character row and was shifted) | Quartus |
+| `atlas_main.c`, `gesture_core.h`, `hdmi_text_v16_4.h` | PEACE and FIST swapped (PEACE = ENTER, FIST = J); PALM needs 75% agreement (3 s like the others); round +1 when our turn times out; `HAND MODE` line removed from the opponent screen; a game left with Q/PALM can be **continued** from the menu (keyboard `A`, gesture PEACE) | Arm DS |
 | `capture_ip/hps_snapshot.v` **and** `soc_system/synthesis/submodules/hps_snapshot.v` (identical) | snapshot IP V2 (version 0x00020000): **window mode** (CSR 10..15: x0, y0, w, h, enable, step) captures one rectangle of the 1920x1080 source at full or half resolution; normal 480x270 snapshots unchanged; ports unchanged, so no Platform Designer regeneration. Checked in iverilog (`gesture_work/sim/tb_snapshot_window.v`): normal, window, full-res window, normal again, all words correct with random DDR stalls | Quartus |
 | `vision_core.h` | `snapshot_window()`; detects IP V2 at start-up and prints `high-resolution DRAW ON/OFF` | Arm DS |
 | `board_core.h` | `board_hires_refine()` / `board_hires_crop()`: the DRAW card is re-cropped from a 2x-resolution window, each 64x64 pixel the average of 4x4 samples (like the training crops); falls back to the normal crop if the window fails | Arm DS |
+| `game_config.h`, `game_core.h`, `atlas_main.c` | **`fixed_deck_enable`** (1 = fixed deck: off-suit cards corrected to the deck card of the same rank and colour, wrong-rank cards rejected with `WRONG RANK CARD`; 0 = no fixed deck, any card taken as the CNN reads it) and **`seven_to_eight_enable`** (CNN 7 counted as 8, fixed deck only). Checked with `gesture_work/sim/game/test_deck.c` (19/19 pass) | Arm DS |
 
-Backups of the previous versions: `*.before_hires`, `*.before_window` (snapshot IP), `*.before_draw`, `*.before_switch`, `*.before_oppjoker`, `*.before_swap`, `*.before_layout`, `*.before_gesture`.
+Backups of the previous versions: `*.before_deck`, `*.before_hires`, `*.before_window` (snapshot IP), `*.before_draw`, `*.before_switch`, `*.before_oppjoker`, `*.before_swap`, `*.before_layout`, `*.before_gesture`.
 
 ## Retraining
 

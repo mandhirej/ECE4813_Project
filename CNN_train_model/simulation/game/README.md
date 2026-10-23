@@ -16,6 +16,7 @@ is replaced by software models in `sim_hw.h`:
 | `sim_hw.h` | hardware models and the simulated player |
 | `render_game.py`, `make_viewer.py` | HDMI frame per step and an HTML step viewer |
 | `gesture_variant_test.py` | gesture read rates per hand photo |
+| `test_deck.c` | unit test of `fixed_deck_enable` / `seven_to_eight_enable` with the real decoder and placement code (run `build_sim.py` first) |
 
 Typical run: `python prep_assets.py`, `python build_sim.py`, then run
 `build/atlas_sim.exe` in a folder that contains `assets.bin`

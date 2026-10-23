@@ -59,7 +59,7 @@ static void hdmi_line(unsigned index,const char *message)
     if(!hdmi_send_line(index))fatal_fpga_link();
 }
 /* With hand-gesture input on, instruction rows name the gesture instead of the key:
- * ENTER -> FIST, "J:" -> "PEACE:", "Q:" -> "PALM:". Set by gesture_set_input(). */
+ * ENTER -> PEACE, "J:" -> "FIST:", "Q:" -> "PALM:". Set by gesture_set_input(). */
 static int hdmi_gesture_labels=0;
 static void hdmi_gesture_text(char out[HDMI_COLS+1],const char *in)
 {
@@ -67,8 +67,8 @@ static void hdmi_gesture_text(char out[HDMI_COLS+1],const char *in)
     while(in&&*in&&o<HDMI_COLS) {
         const char *rep=0;unsigned skip=0;
         int word_start=(o==0||out[o-1]==' ');
-        if(!strncmp(in,"ENTER",5)){rep="FIST";skip=5;}
-        else if(word_start&&!strncmp(in,"J:",2)){rep="PEACE:";skip=2;}
+        if(!strncmp(in,"ENTER",5)){rep="PEACE";skip=5;}
+        else if(word_start&&!strncmp(in,"J:",2)){rep="FIST:";skip=2;}
         else if(word_start&&!strncmp(in,"Q:",2)){rep="PALM:";skip=2;}
         if(rep){while(*rep&&o<HDMI_COLS)out[o++]=*rep++;in+=skip;}
         else out[o++]=*in++;
